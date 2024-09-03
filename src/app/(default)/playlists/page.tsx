@@ -5,7 +5,7 @@ import TableAllPlaylists from '@/src/components/TableAllPlaylists';
 import styles from '@/src/styles/app.module.css';
 
 export default async function AllPlaylists() {
-  const playlists = await apiService.getAllPlaylists()
+  const playlists = await apiService.getAllPlaylists();
 
   return (
     <main className={styles.main}>

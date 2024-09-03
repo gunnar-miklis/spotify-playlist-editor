@@ -8,6 +8,7 @@ dist
 *.log
 *debug.*
 *error.*
+tsconfig.tsbuildinfo
 
 # ignoring all files that start with a dot.
 .*

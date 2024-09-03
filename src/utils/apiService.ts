@@ -1,7 +1,6 @@
 import { auth } from '@/src/auth';
 import type {
   Playlist,
-  SpotifyDefaultResponse,
   SpotifyResponsePlaylists,
   SpotifyResponsePlaylistTracks,
   Track,
