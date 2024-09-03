@@ -1,0 +1,36 @@
+# "Whitelist" approach 
+# ignore all files (or at least all hidden files) by default and add exceptions to those files that were agreed to be added to the project.
+# to ensure that private files are not committed accidentally 
+
+coverage
+node_modules
+dist
+*.log
+*debug.*
+*error.*
+
+# ignoring all files that start with a dot.
+.*
+
+# add exceptions to the configuration files that belong to the project.
+!.gitignore
+!.gitattributes
+!.editorconfig
+!.prettier*
+!.eslint*
+
+# yarn berry
+.yarn/*
+!.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# IDE-VSCode
+.vscode/*
+!.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.vercel
