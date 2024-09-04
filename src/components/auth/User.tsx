@@ -8,7 +8,7 @@ export default function User({ name, image }: User) {
   else
     return (
       <>
-        <div className={`${styles.paper} ${styles.flexRow} ${styles.flexBetween}`}>
+        <div className={`${styles.paper} ${styles['flex-row']} ${styles['flex-between']}`}>
           <h2 className={styles.h2}>Hello {name} !</h2>
           {image ? (
             <div className={styles.avatar}>
@@ -30,7 +30,7 @@ export default function User({ name, image }: User) {
           )}
         </div>
         <div className={styles.paper}>
-          <Link className={styles.link} href='/playlists'>
+          <Link className={styles.link} style={{ color: 'var(--col-text)' }} href='/playlists'>
             View Playlists
           </Link>
         </div>

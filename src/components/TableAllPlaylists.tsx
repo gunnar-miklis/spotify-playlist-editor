@@ -27,7 +27,7 @@ export default function TableAllPlaylists({ playlists }: Props) {
   </div>;
 
   return (
-    <article className={`${styles.article} ${styles.paper} ${styles.tableWrapper}`}>
+    <article className={`${styles.article} ${styles.paper} ${styles['table-wrapper']}`}>
       <table className={styles.table}>
         <thead>
           <tr>

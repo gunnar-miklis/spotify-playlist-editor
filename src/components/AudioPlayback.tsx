@@ -33,7 +33,7 @@ export default function AudioPlayback({ source }: Props) {
       <audio onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} ref={audioRef}>
         <source src={source} type='audio/mpeg' />
       </audio>
-      <button className={styles.playPauseButton} onClick={handlePlayPause}>
+      <button className={styles['play-pause-button']} onClick={handlePlayPause}>
         {isPlaying ? <MdOutlineMotionPhotosPaused /> : <MdOutlinePlayCircle />}
       </button>
     </>
