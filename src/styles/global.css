@@ -2,11 +2,11 @@
 :root {
   color-scheme: light dark;
 
-  --col-text: light-dark(#f0f0f0, #000000);
-  --col-bg: light-dark(#000000, #f0f0f0);
-  --col-accent: #10d673;
-  --col-accent-active: #23f58c;
-  --col-card-bg: #f0f0f019;
+  --col-text: light-dark(#000000, #f0f0f0);
+  --col-bg: light-dark(#f0f0f0, #000000);
+  --col-accent: light-dark(#0cb661d9, #0cc769d9);
+  --col-accent-active: light-dark(#0cb661, #0cc769);
+  --col-card-bg: light-dark(#0f0f0f1a, #f0f0f01a);
 
   --app-width: 992px;
   --border-radius: 1rem;
@@ -45,12 +45,11 @@ body {
 
 a {
   color: var(--col-accent);
-  font-weight: normal;
+  font-weight: bold;
 }
 
 input,
 button {
-  appearance: unset;
   border: unset;
   font-weight: inherit;
   font-size: inherit;
