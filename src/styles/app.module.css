@@ -60,7 +60,7 @@
     background-color: var(--col-accent-active);
   }
 }
-.playPauseButton {
+.play-pause-button {
   background-color: transparent;
   color: var(--text-col);
   opacity: 0.8;
@@ -72,6 +72,12 @@
   }
 }
 .input {
+}
+.checkbox {
+  width: var(--space-md);
+  height: var(--space-md);
+}
+.range {
 }
 .image {
 }
@@ -108,7 +114,7 @@
   }
 }
 
-.tableWrapper {
+.table-wrapper {
   max-width: 100%;
   overflow-x: auto;
 }
@@ -203,11 +209,11 @@
 .gap-lg {
   gap: var(--space-lg);
 }
-.flexRow {
+.flex-row {
   display: flex;
   flex-direction: row;
 }
-.flexBetween {
+.flex-between {
   justify-content: space-between;
   align-items: center;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Track } from '@/src/types';
 import { msToMin, sortObjectsByField as sortTracks } from '@/src/utils/functions';
 import AudioPlayback from './AudioPlayback';
@@ -11,6 +11,8 @@ type Props = { tracks: Track[] };
 export default function TablePlaylistTracks({ tracks }: Props) {
   const [table, setTable] = useState<Track[]>(tracks);
   const [isAsc, setIsAsc] = useState<boolean>(null!);
+
+  useEffect(() => setTable(tracks), [tracks]);
 
   function handleSortTable(field: keyof Track) {
     if (!field) {
@@ -27,7 +29,7 @@ export default function TablePlaylistTracks({ tracks }: Props) {
   </div>;
 
   return (
-    <article className={`${styles.article} ${styles.paper} ${styles.tableWrapper}`}>
+    <article className={`${styles.article} ${styles.paper} ${styles['table-wrapper']}`}>
       <table className={styles.table}>
         <thead>
           <tr>
