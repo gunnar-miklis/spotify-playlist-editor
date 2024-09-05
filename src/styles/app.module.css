@@ -17,6 +17,7 @@
 .article {
   display: flex;
   flex-direction: column;
+  flex: 1 1;
   gap: var(--space-sm);
 }
 .footer {
@@ -49,11 +50,21 @@
   }
 }
 .button {
-  background-color: var(--col-accent);
-  color: var(--col-bg);
-  border-radius: var(--border-radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
   padding: 0.8rem 1rem;
+
+  color: var(--col-bg);
+  background-color: var(--col-accent);
+  border: 1px solid var(--col-accent);
+  border-radius: var(--border-radius);
   font-weight: bold;
+
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
 
   &:hover,
   &:focus {
@@ -71,13 +82,42 @@
     opacity: 1;
   }
 }
+.icon {
+  background-color: transparent;
+  color: var(--text-col);
+  font-size: 1.3rem;
+}
 .input {
+}
+.select {
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: var(--border-radius);
+  padding: calc(var(--space-sm) / 2) var(--space-sm);
+  cursor: pointer;
 }
 .checkbox {
   width: var(--space-md);
   height: var(--space-md);
+  cursor: pointer;
 }
 .range {
+  appearance: none;
+  background: white;
+
+  width: 100px;
+  height: 0.5rem;
+  border-radius: 1rem;
+}
+.range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--col-accent-active);
+  cursor: pointer;
 }
 .image {
 }
@@ -109,7 +149,6 @@
 
     & dd {
       font-weight: bold;
-      color: var(--col-accent);
     }
   }
 }
@@ -173,18 +212,24 @@
 
 /* COMPONENT CLASSES */
 .paper {
+  padding: 1rem;
+
   background-color: var(--col-card-bg);
+  border: 1px solid var(--col-card-bg);
   border-radius: var(--border-radius);
 
-  padding: 1rem;
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
 }
 .spinner {
-  width: 1rem;
-  height: 1rem;
+  display: inline-flex;
+  align-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
   border-radius: 50%;
   border: 3px solid;
-  border-color: #dedede;
-  border-right-color: #000000;
+  border-color: var(--col-card-bg);
+  border-right-color: var(--col-bg);
   animation: spinner-d3wgkg 1s infinite linear;
 }
 @keyframes spinner-d3wgkg {
@@ -194,12 +239,6 @@
 }
 
 /* UTILITY CLASSES */
-.paper-spacing-sm {
-}
-.paper-spacing-md {
-}
-.paper-spacing-lg {
-}
 .gap-sm {
   gap: var(--space-sm);
 }
@@ -216,4 +255,7 @@
 .flex-between {
   justify-content: space-between;
   align-items: center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }

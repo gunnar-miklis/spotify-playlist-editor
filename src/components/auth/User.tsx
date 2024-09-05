@@ -29,8 +29,12 @@ export default function User({ name, image }: User) {
             </div>
           )}
         </div>
-        <div className={styles.paper}>
-          <Link className={styles.link} style={{ color: 'var(--col-text)' }} href='/playlists'>
+        <div>
+          <Link
+            className={styles.button}
+            style={{ textDecoration: 'none', width: '100%' }}
+            href='/playlists'
+          >
             View Playlists
           </Link>
         </div>
