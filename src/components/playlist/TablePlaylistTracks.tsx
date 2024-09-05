@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import type { Track } from '@/src/types';
 import { msToMin, sortObjectsByField as sortTracks } from '@/src/utils/functions';
 import AudioPlayback from './AudioPlayback';
@@ -29,44 +30,53 @@ export default function TablePlaylistTracks({ tracks }: Props) {
   </div>;
 
   return (
-    <article className={`${styles.article} ${styles.paper} ${styles['table-wrapper']}`}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            {Object.keys(table[0]).map(
-              (objectKey) =>
-                objectKey !== 'id' &&
-                objectKey !== 'previewUrl' && (
-                  <th key={objectKey}>
-                    <button onClick={() => handleSortTable(objectKey as keyof Track)}>
-                      {objectKey}
-                      <div>
-                        <span>&#x25B4;</span>
-                        <span>&#x25BE;</span>
-                      </div>
-                    </button>
-                  </th>
-                ),
-            )}
-            <th>Preview</th>
-          </tr>
-        </thead>
-        <tbody>
-          {table.map(({ id, name, duration, artists, popularity, previewUrl }) => (
+    <table className={styles.table}>
+      <thead>
+        <tr>
+          {Object.keys(table[0]).map((objectKey) => {
+            if (
+              objectKey === 'name' ||
+              objectKey === 'duration' ||
+              objectKey === 'artists' ||
+              objectKey === 'releaseDate' ||
+              objectKey === 'popularity'
+            ) {
+              return (
+                <th key={objectKey}>
+                  <button onClick={() => handleSortTable(objectKey as keyof Track)}>
+                    {objectKey}
+                    <div>
+                      <span>&#x25B4;</span>
+                      <span>&#x25BE;</span>
+                    </div>
+                  </button>
+                </th>
+              );
+            }
+          })}
+          <th>Preview</th>
+        </tr>
+      </thead>
+      <tbody>
+        {table.map(
+          ({ id, name, duration, artists, popularity, releaseDate, previewUrl, openSpotify }) => (
             <tr key={id}>
               <td>
-                <strong>{name}</strong>
+                <Link className={styles.link} href={openSpotify} target='_blank'>
+                  {name}
+                </Link>
               </td>
               <td>{artists}</td>
               <td>{msToMin(duration)}</td>
               <td>{popularity}</td>
+              <td>{releaseDate}</td>
               <td style={{ display: 'flex' }}>
                 <AudioPlayback source={previewUrl} />
               </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </article>
+          ),
+        )}
+      </tbody>
+    </table>
   );
 }

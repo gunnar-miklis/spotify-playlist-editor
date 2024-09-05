@@ -1,61 +1,63 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import apiService from '@/src/utils/apiService';
-import TablePlaylistTracks from '@/src/components/TablePlaylistTracks';
-import styles from '@/src/styles/app.module.css';
-import Filter from '@/src/components/Filters';
+import Link from 'next/link';
 import type { Track } from '@/src/types';
+import apiService from '@/src/utils/apiService';
+import Filter from '@/src/components/playlist/Filters';
+import TablePlaylistTracks from '@/src/components/playlist/TablePlaylistTracks';
+import CreateNewPlaylist from '@/src/components/playlist/CreateNewPlaylist';
+import PlaylistMetadata from '@/src/components/playlist/PlaylistMetadata';
+import styles from '@/src/styles/app.module.css';
 
 type Props = {
   params: { id: string };
-  searchParams: { popularity: string; duration: string };
+  searchParams: {
+    popularity: string;
+    releaseDate: string;
+  };
 };
 export default async function SinglePlaylist({ params: { id }, searchParams }: Props) {
+  const playlist = await apiService.getOnePlaylist(id);
   const playlistTracks = await apiService.getPlaylistTracks(id);
-  const { name, owner, visibility, totalTracks } = await apiService.getOnePlaylist(id);
 
   let filteredTracks: Track[] = structuredClone(playlistTracks);
   Object.keys(searchParams).forEach((key) => {
     switch (key) {
       case 'popularity':
         filteredTracks = filteredTracks.filter((track) => track[key] <= Number(searchParams[key]));
-      case 'duration':
-        filteredTracks = filteredTracks.filter((track) => track[key] <= Number(searchParams[key]));
+        break;
+      case 'releaseDate':
+        filteredTracks = filteredTracks.filter((track) => track[key].includes(searchParams[key]));
+        break;
     }
   });
 
   return (
-    <main className={styles.main}>
+    <>
       <Link className={styles.link} href='/playlists'>
         Go back
       </Link>
 
-      <h1 className={styles.h1}>Playlist: {name}</h1>
+      <h1 className={styles.h1}>Playlist: {playlist.name}</h1>
 
-      <dl className={`${styles.dl} ${styles.paper}`}>
-        <span>
-          <dt>Owner: </dt>
-          <dd>{owner}</dd>
-        </span>
-        <span> | </span>
-        <span>
-          <dt>Visibility: </dt>
-          <dd>{visibility ? 'Public' : 'Private'}</dd>
-        </span>
-        <span> | </span>
-        <span>
-          <dt>Total Tracks: </dt>
-          <dd>{totalTracks}</dd>
-        </span>
-      </dl>
+      <section className={`${styles.section} ${styles.paper}`}>
+        <PlaylistMetadata {...playlist} />
+      </section>
 
-      <Filter
-        minPopularity={getMinPopularity(filteredTracks)}
-        maxPopularity={getMaxPopularity(filteredTracks)}
-      />
+      <section
+        className={`${styles.section} ${styles['flex-row']} ${styles['flex-wrap']} ${styles['gap-sm']}`}
+      >
+        <Filter
+          minPopularity={getMinPopularity(filteredTracks)}
+          maxPopularity={getMaxPopularity(filteredTracks)}
+          releaseYears={getArrayOfYears(filteredTracks)}
+        />
+        <CreateNewPlaylist playlist={playlist} filteredTracks={filteredTracks} />
+      </section>
 
-      {filteredTracks && <TablePlaylistTracks tracks={filteredTracks} />}
-    </main>
+      <section className={`${styles.section} ${styles['table-wrapper']} ${styles.paper}`}>
+        {filteredTracks && <TablePlaylistTracks tracks={filteredTracks} />}
+      </section>
+    </>
   );
 }
 
@@ -68,7 +70,13 @@ function getMinPopularity(allTracks: Track[]): number {
   const popularities = allTracks.map(({ popularity }) => popularity);
   return Math.min(...popularities);
 }
+
 function getMaxPopularity(allTracks: Track[]): number {
   const popularities = allTracks.map(({ popularity }) => popularity);
   return Math.max(...popularities);
+}
+
+function getArrayOfYears(allTracks: Track[]): number[] {
+  const releaseYears = allTracks.map(({ releaseDate }) => Number(releaseDate.slice(0, 4)));
+  return [...new Set(releaseYears)].sort();
 }
