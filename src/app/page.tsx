@@ -5,7 +5,7 @@ import SignOut from '@/src/components/auth/SignOut';
 import User from '@/src/components/auth/User';
 import styles from '@/src/styles/app.module.css';
 
-export default async function HomePage() {
+export default async function RootPage() {
   const session = await auth();
 
   return (
@@ -22,4 +22,4 @@ export default async function HomePage() {
   );
 }
 
-export const metadata: Metadata = { title: 'Home' };
+export const metadata: Metadata = { title: 'Spotify Playlist Assistant' };
