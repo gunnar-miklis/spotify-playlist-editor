@@ -1,3 +1,4 @@
+// Application Types
 export type Playlist = {
   id: string;
   name: string;
@@ -8,14 +9,18 @@ export type Playlist = {
 
 export type Track = {
   id: string;
+  uri: string;
   name: string;
   artists: string;
   duration: number;
   popularity: number;
+  releaseDate: string;
   previewUrl: string;
+  openSpotify: string;
+  apiEndpoint: string;
 };
 
-// API Types
+// Spotify Api Types
 export type SpotifyDefaultResponse = {
   limit: number;
   offset: 0;
@@ -23,7 +28,11 @@ export type SpotifyDefaultResponse = {
   previous: string | null;
   total: number;
 };
-export type SpotifyResponsePlaylists = SpotifyDefaultResponse & {
+
+/**
+ * Endpoint: /me/playlists
+ */
+export type GetCurrentUsersPlaylists = SpotifyDefaultResponse & {
   items: {
     id: string;
     name: string;
@@ -32,20 +41,47 @@ export type SpotifyResponsePlaylists = SpotifyDefaultResponse & {
     tracks: { total: number };
   }[];
 };
-export type SpotifyResponsePlaylistTracks = SpotifyDefaultResponse & {
-  items: [
-    {
-      track: {
+
+/**
+ * Endpoint: /playlists/{playlist_id}/tracks
+ */
+export type GetPlaylistItems = SpotifyDefaultResponse & {
+  items: {
+    track: {
+      id: string;
+      uri: string;
+      name: string;
+      artists: {
         id: string;
         name: string;
-        artists: {
-          id: string;
-          name: string;
-        }[];
-        duration_ms: number;
-        popularity: number;
-        preview_url: string;
+      }[];
+      duration_ms: number;
+      popularity: number;
+      album: {
+        release_date: string;
       };
-    },
-  ];
+      preview_url: string;
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+    };
+  }[];
+};
+
+/**
+ * Endpoint: /users/{user_id}/playlists
+ */
+export type CreatePlaylistBody = {
+  name: string;
+  description?: string;
+  public?: boolean;
+};
+
+/**
+ * Endpoint: /playlists/{playlist_id}/tracks
+ */
+export type AddItemsToPlaylistBody = {
+  uris: string[];
+  position?: number;
 };
