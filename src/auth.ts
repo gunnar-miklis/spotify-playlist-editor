@@ -7,8 +7,14 @@ declare module 'next-auth' {
   }
 }
 
-const scope =
-  'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private';
+const scope = [
+  'user-read-private',
+  'user-read-email',
+  'playlist-read-private',
+  'playlist-read-collaborative',
+  'playlist-modify-public',
+  'playlist-modify-private',
+].join(' ');
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -17,12 +23,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ token, user, account }) {
+    jwt({ token, account }) {
       if (account && account.token_type === 'bearer') {
         token.accessToken = account.access_token;
-      }
-      if (user) {
-        token.id = user.id;
+        token.id = account.providerAccountId;
       }
       return token;
     },
