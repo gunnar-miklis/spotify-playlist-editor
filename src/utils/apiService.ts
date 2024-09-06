@@ -178,7 +178,7 @@ class ApiService {
         );
       }
       if (items.uris.length > 100) {
-        throw new Error('Api limit does not allow more than 100 tracks at once.');
+        throw new Error('Api limit does not allow to add more than 100 tracks at once.');
       }
 
       const apiResponse = await this._api('POST', `/playlists/${playlistId}/tracks`, items);
@@ -197,5 +197,9 @@ class ApiService {
   }
 }
 
+/**
+ * A simple interface that provides methods to interact with the Spotify API.
+ * @throws errors if the request fails, or if the user is not authenticated.
+ */
 const apiService = new ApiService();
 export default apiService;
