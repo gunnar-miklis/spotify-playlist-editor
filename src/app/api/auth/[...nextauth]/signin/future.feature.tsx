@@ -1,8 +1,8 @@
+// TODO: style custom sign in page
+
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '@/src/styles/app.module.css';
-
-// TODO: custom sign in page
 
 export default async function SignIn() {
   return (
