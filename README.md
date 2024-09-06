@@ -1,16 +1,27 @@
-# Spotify Playlist Assistant
+# Spotify Playlist Assistant (Prototype)
 
 Spotify Playlist Assistant is a simple interface that provides methods to interact with the Spotify API. It allows you to fetch playlists and their tracks, filter the lists, and create new playlists based on the selected filters.
 
-[Link to the Demo]('')
+&nbsp;
 
-![Screenshot]()
+<div align='center' >
+
+### [**>> Try it out! <<**](https://spotify-playlist-assistant.vercel.app/)
+
+</div>
+
+&nbsp;
+
+![Screenshot](/public/screenshot.webp)
+
+&nbsp;
 
 ## Features
 
 1. **Fetch** playlists and tracks from the Spotify API.
 2. **Filter** playlists based on selected criteria.
 3. **Create** new playlists and send them back to the Spotify API.
+4. Light/Dark mode.
 
 ## Technologies and Frameworks
 
@@ -18,12 +29,6 @@ Spotify Playlist Assistant is a simple interface that provides methods to intera
 - Next.js / React
 - Next-Auth (**OAuth** with Auth.js)
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api)
-
-## Motivation
-
-- This project is on the one hand an educational learning project to help me expand my development skills (SSR and CSR with Next.js and TypeScript).
-- And on the other hand, it's a fun hobby project. I've always wanted better filtering options for playlists in Spotify, but since they don't offer that feature, I decided to build it myself.
-- It's a mix of learning something new and solving a problem I've personally wanted fixed for a while.
 
 ## Installation
 
@@ -76,6 +81,12 @@ src/
 ├── auth.ts
 └── middleware.ts
 ```
+
+## Motivation
+
+- This project is on the one hand an educational learning project to help me expand my development skills (SSR and CSR with Next.js and TypeScript).
+- And on the other hand, it's a fun hobby project. I've always wanted better filtering options for playlists in Spotify, but since they don't offer that feature, I decided to build it myself.
+- It's a mix of learning something new and solving a problem I've personally wanted fixed for a while.
 
 ## Future Ideas
 
