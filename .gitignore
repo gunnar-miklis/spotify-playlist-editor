@@ -5,9 +5,6 @@
 coverage
 node_modules
 dist
-*.log
-*debug.*
-*error.*
 tsconfig.tsbuildinfo
 
 # ignoring all files that start with a dot.
@@ -21,6 +18,7 @@ tsconfig.tsbuildinfo
 !.eslint*
 
 # yarn berry
+!.pnp.*
 .yarn/*
 !.yarn/
 !.yarn/patches
@@ -34,4 +32,3 @@ tsconfig.tsbuildinfo
 !.vscode/
 !.vscode/settings.json
 !.vscode/extensions.json
-.vercel
