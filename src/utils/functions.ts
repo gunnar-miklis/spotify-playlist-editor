@@ -1,20 +1,16 @@
-import type { Dispatch, SetStateAction } from 'react';
-
 /**
  * Sorts an array of objects based on a field and toggles the sort order between ascending and descending.
- * @param field the field to sort by.
- * @param initalArray the array to sort.
- * @param setSortedArray the setter for the sorted array.
- * @param isAsc whether to sort in ascending or descending order.
- * @param setIsAsc the setter for isAsc.
+ * @param field The property name to sort by.
+ * @param initalArray The array to sort.
+ * @param isAsc Whether to sort in ascending (true) or descending (false) order.
+ * @returns A tuple containing the sorted array and the opposite boolean value of `isAsc`.
+ * @throws An error if the type of the values in the array at the given property is not: string, boolean, or number.
  */
 export function sortObjectsByField<ObjectType>(
   field: keyof ObjectType,
   initalArray: ObjectType[],
-  setSortedArray: Dispatch<SetStateAction<ObjectType[]>>,
   isAsc: boolean,
-  setIsAsc: Dispatch<SetStateAction<boolean>>,
-): void {
+): [ObjectType[], boolean] {
   const sortedArray = initalArray.toSorted((a, b) => {
     if (typeof a[field] === 'string' && typeof b[field] === 'string') {
       return isAsc ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field]);
@@ -27,8 +23,8 @@ export function sortObjectsByField<ObjectType>(
     }
     throw new Error('Sorting failed: Unexpected type.');
   });
-  setSortedArray(sortedArray);
-  setIsAsc(isAsc ? false : true);
+  const isAscToggled = isAsc ? false : true;
+  return [sortedArray, isAscToggled];
 }
 
 /**

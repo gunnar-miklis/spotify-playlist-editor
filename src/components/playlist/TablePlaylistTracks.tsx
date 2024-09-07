@@ -20,7 +20,9 @@ export default function TablePlaylistTracks({ tracks }: Props) {
       setTable(tracks);
       setIsAsc(null!);
     } else {
-      sortTracks<Track>(field, tracks, setTable, isAsc, setIsAsc);
+      const [sortedTracks, isAscToggled] = sortTracks<Track>(field, tracks, isAsc);
+      setTable(sortedTracks);
+      setIsAsc(isAscToggled);
     }
   }
 

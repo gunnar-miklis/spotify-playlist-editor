@@ -17,7 +17,9 @@ export default function TableAllPlaylists({ playlists }: Props) {
       setTable(playlists);
       setIsAsc(null!);
     } else {
-      sortPlaylists<Playlist>(field, playlists, setTable, isAsc, setIsAsc);
+      const [sortedPlaylists, isAscToggled] = sortPlaylists<Playlist>(field, playlists, isAsc);
+      setTable(sortedPlaylists);
+      setIsAsc(isAscToggled);
     }
   }
 
