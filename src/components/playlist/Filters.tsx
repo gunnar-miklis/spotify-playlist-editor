@@ -9,6 +9,7 @@ type Props = {
   maxPopularity: number;
   releaseYears: number[];
 };
+
 export default function Filter({ minPopularity, maxPopularity, releaseYears }: Props) {
   const selectedFilters = useRef<Map<string, string>>(new Map());
   const [popularity, setPopularity] = useState<number>(maxPopularity);

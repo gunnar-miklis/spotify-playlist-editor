@@ -6,6 +6,7 @@ import { MdOutlinePlayCircle, MdOutlineMotionPhotosPaused } from 'react-icons/md
 import styles from '@/src/styles/app.module.css';
 
 type Props = { source: string };
+
 export default function AudioPlayback({ source }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null!);

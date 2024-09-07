@@ -51,6 +51,8 @@ class ApiService {
           `Failed to fetch playlists: ${apiResponse.status} ${apiResponse.statusText}`,
         );
       }
+
+      // Pick only those properties (from data) which are needed in the application
       const data: GetCurrentUsersPlaylists = await apiResponse.json();
       const playlists: Playlist[] = data.items.map((i) => ({
         id: i.id,
@@ -59,6 +61,7 @@ class ApiService {
         visibility: i.public,
         totalTracks: i.tracks.total,
       }));
+
       return playlists;
     } catch (error) {
       throw error;
@@ -78,6 +81,8 @@ class ApiService {
           `Failed to fetch playlist: ${apiResponse.status} ${apiResponse.statusText}`,
         );
       }
+
+      // Pick only those properties (from data) which are needed in the application
       const data = await apiResponse.json();
       const playlist: Playlist = {
         id: data.id,
@@ -86,6 +91,7 @@ class ApiService {
         visibility: data.public,
         totalTracks: data.tracks.total,
       };
+
       return playlist;
     } catch (error) {
       throw error;
@@ -108,6 +114,8 @@ class ApiService {
           `Failed to fetch tracks for this playlist: ${apiResponse.status} ${apiResponse.statusText}`,
         );
       }
+
+      // Pick only those properties (from data) which are needed in the application
       const data: GetPlaylistItems = await apiResponse.json();
       const playlistTracks: Track[] = data.items.map(({ track }) => ({
         id: track.id,
@@ -121,6 +129,7 @@ class ApiService {
         openSpotify: track.external_urls.spotify,
         apiEndpoint: track.href,
       }));
+
       return playlistTracks;
     } catch (error) {
       throw error;
@@ -135,6 +144,7 @@ class ApiService {
    */
   async createPlaylist(userId: string, metadata: CreatePlaylistBody) {
     try {
+      // Validate inputs before making the api call
       if (!userId) {
         throw new Error('Failed to create a new playlist: "userId" is missing.');
       }
@@ -148,6 +158,7 @@ class ApiService {
           `Failed to create a new playlist: ${apiResponse.status} ${apiResponse.statusText}`,
         );
       }
+
       const data = await apiResponse.json();
       if (!data) throw new Error('Unexpected Error. data-object is empty.');
 
@@ -166,6 +177,7 @@ class ApiService {
    */
   async addItems(playlistId: string, items: AddItemsToPlaylistBody) {
     try {
+      // Validate inputs before making the api call
       if (!playlistId) {
         throw new Error('Failed to create a new playlist: "playlistId" is missing.');
       }
@@ -187,6 +199,7 @@ class ApiService {
           `Failed to add tracks to the newly created playlist: ${apiResponse.status} ${apiResponse.statusText}`,
         );
       }
+
       const data = await apiResponse.json();
       if (!data) throw new Error('Unexpected Error. data-object is empty.');
 

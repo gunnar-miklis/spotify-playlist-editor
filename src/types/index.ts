@@ -1,4 +1,4 @@
-// Application Types
+// Types used in the application
 export type Playlist = {
   id: string;
   name: string;
@@ -6,7 +6,6 @@ export type Playlist = {
   visibility: boolean;
   totalTracks: number;
 };
-
 export type Track = {
   id: string;
   uri: string;
@@ -20,7 +19,10 @@ export type Track = {
   apiEndpoint: string;
 };
 
-// Spotify Api Types
+// Types for the Spotify Api
+/**
+ * Excerpt of Spotif Api GET response
+ */
 export type SpotifyDefaultResponse = {
   limit: number;
   offset: 0;
@@ -28,9 +30,8 @@ export type SpotifyDefaultResponse = {
   previous: string | null;
   total: number;
 };
-
 /**
- * Endpoint: /me/playlists
+ * Excerpt of Spotif Api GET response at endpoint: /me/playlists
  */
 export type GetCurrentUsersPlaylists = SpotifyDefaultResponse & {
   items: {
@@ -41,9 +42,8 @@ export type GetCurrentUsersPlaylists = SpotifyDefaultResponse & {
     tracks: { total: number };
   }[];
 };
-
 /**
- * Endpoint: /playlists/{playlist_id}/tracks
+ * Excerpt of Spotif Api GET response at endpoint: /playlists/{playlist_id}/tracks
  */
 export type GetPlaylistItems = SpotifyDefaultResponse & {
   items: {
@@ -68,18 +68,16 @@ export type GetPlaylistItems = SpotifyDefaultResponse & {
     };
   }[];
 };
-
 /**
- * Endpoint: /users/{user_id}/playlists
+ * Excerpt of Spotif Api POST request at endpoint: /users/{user_id}/playlists
  */
 export type CreatePlaylistBody = {
   name: string;
   description?: string;
   public?: boolean;
 };
-
 /**
- * Endpoint: /playlists/{playlist_id}/tracks
+ * Excerpt of Spotif Api POST request at endpoint: /playlists/{playlist_id}/tracks
  */
 export type AddItemsToPlaylistBody = {
   uris: string[];

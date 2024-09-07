@@ -15,6 +15,7 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   boundaries: MinMax;
   selectedValues: Dispatch<SetStateAction<MinMax>>;
 };
+
 export default function DoubleRangeSlider({ boundaries: [min, max], selectedValues }: Props) {
   const [lowerVal, setLowerVal] = useState<number>(min);
   const [upperVal, setUpperVal] = useState<number>(max);

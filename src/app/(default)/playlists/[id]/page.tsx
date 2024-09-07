@@ -15,6 +15,7 @@ type Props = {
     releaseDate: string;
   };
 };
+
 export default async function SinglePlaylist({ params: { id }, searchParams }: Props) {
   const playlist = await apiService.getOnePlaylist(id);
   const playlistTracks = await apiService.getPlaylistTracks(id);

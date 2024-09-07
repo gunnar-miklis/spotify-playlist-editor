@@ -94,9 +94,10 @@ src/
 
 ## 🧗‍♂️ Challenges and Learning Experiences
 
-1. The biggest challenge for me, as someone who's used to develope with React  (purely client-side) was adapting to Next.js the hybrid full-stack approach. Getting a feel for how server and client connects, especially when mixing SSR with dynamic CSR, took some time to grasp. Having the server involved in state managment required to rethink how states or data fetching are handled on the client-side. For example via API routes or Server Actions.
-2. The file-based system (nested folder structures) initally felt complex. However it offers a lot of fexilbilty overall.
-3. CSS modules was a new concept for me as well. They provide modularity, which is incredibly helpful when working with individual components, making styling more manageable.
+1. The biggest challenge for me, as someone who's used to develope with React  (purely client-side) was adapting to Next.js the hybrid full-stack approach. Getting a feel for how server and client connects, especially when mixing SSR with dynamic CSR, took some time to grasp. Having the server involved in state managment required to rethink how states or data fetching are handled on the client-side — such as using API routes or Server Actions.
+2. Another significant challenge was working with the Spotify API. While it's feature-rich and offers a lot of functionality, the responses are large JSON objects, so I had to carefully pick out the relevant properties. Since each endpoint is designed to handle just a single specific task (I assume the API strictly follows the SOLID principles), I often needed to make several API calls to gather all the data required for just a single action in my application.
+3. The file-based system (nested folder structures) initally felt complex. However it offers a lot of flexibility and organization as the project grows.
+4. CSS modules was a new concept for me as well. They provide modularity, which is incredibly helpful when working with individual components, making styling more manageable.
 
 ## 💭 Future Ideas
 
@@ -111,8 +112,8 @@ src/
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+Contributions are welcome! If you have any suggestions, bug reports, or feature requests, feel free to message me 🙂
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
