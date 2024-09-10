@@ -7,7 +7,7 @@ const font = Red_Hat_Display({
   weight: ['400', '700'],
   style: 'normal',
   display: 'swap',
-  variable: '--font-pt-sans',
+  variable: '--font-red-hat-display',
 });
 
 export default function RootLayout({
