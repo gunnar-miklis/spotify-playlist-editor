@@ -2,6 +2,7 @@
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
+
 import styles from '@/src/styles/app.module.css';
 
 export default async function SignIn() {

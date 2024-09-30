@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import styles from '@/src/styles/app.module.css';
 import type { Track } from '@/src/types';
 import {
   msToMin,
   sortObjectsByField as sortTracks,
 } from '@/src/utils/functions';
+
 import AudioPlayback from './AudioPlayback';
-import styles from '@/src/styles/app.module.css';
 
 type Props = { tracks: Track[] };
 

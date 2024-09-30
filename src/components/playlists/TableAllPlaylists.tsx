@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+
+import styles from '@/src/styles/app.module.css';
 import type { Playlist } from '@/src/types';
 import { sortObjectsByField as sortPlaylists } from '@/src/utils/functions';
-import styles from '@/src/styles/app.module.css';
 
 type Props = { playlists: Playlist[] };
 

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+
+import CreateNewPlaylist from '@/src/components/playlist/CreateNewPlaylist';
+import Filter from '@/src/components/playlist/Filters';
+import PlaylistMetadata from '@/src/components/playlist/PlaylistMetadata';
+import TablePlaylistTracks from '@/src/components/playlist/TablePlaylistTracks';
+import styles from '@/src/styles/app.module.css';
 import type { Track } from '@/src/types';
 import apiService from '@/src/utils/apiService';
-import Filter from '@/src/components/playlist/Filters';
-import TablePlaylistTracks from '@/src/components/playlist/TablePlaylistTracks';
-import CreateNewPlaylist from '@/src/components/playlist/CreateNewPlaylist';
-import PlaylistMetadata from '@/src/components/playlist/PlaylistMetadata';
-import styles from '@/src/styles/app.module.css';
 
 type Props = {
   params: { id: string };

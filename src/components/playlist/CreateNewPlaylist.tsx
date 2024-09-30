@@ -2,15 +2,16 @@
 
 import { useState } from 'react';
 import { MdOutlineCheckCircle } from 'react-icons/md';
-import { getUserId } from '@/src/app/actions/session/getUserId';
+
 import { createPlaylist } from '@/src/app/actions/playlists/createPlaylist';
+import { getUserId } from '@/src/app/actions/session/getUserId';
+import styles from '@/src/styles/app.module.css';
 import type {
   AddItemsToPlaylistBody,
   CreatePlaylistBody,
   Playlist,
   Track,
 } from '@/src/types';
-import styles from '@/src/styles/app.module.css';
 
 type Props = {
   playlist: Playlist;

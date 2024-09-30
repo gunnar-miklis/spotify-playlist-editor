@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import styles from '@/src/styles/app.module.css';
 
 type Props = { children: ReactNode };

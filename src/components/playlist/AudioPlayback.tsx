@@ -3,9 +3,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import {
-  MdOutlinePlayCircle,
   MdOutlineMotionPhotosPaused,
+  MdOutlinePlayCircle,
 } from 'react-icons/md';
+
 import styles from '@/src/styles/app.module.css';
 
 type Props = { source: string };

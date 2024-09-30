@@ -1,6 +1,7 @@
-import type { ReactNode } from 'react';
-import { Red_Hat_Display } from 'next/font/google';
 import '@/src/styles/global.css';
+
+import { Red_Hat_Display } from 'next/font/google';
+import type { ReactNode } from 'react';
 
 const font = Red_Hat_Display({
   subsets: ['latin'],

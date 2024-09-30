@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import apiService from '@/src/utils/apiService';
+
 import TableAllPlaylists from '@/src/components/playlists/TableAllPlaylists';
 import styles from '@/src/styles/app.module.css';
+import apiService from '@/src/utils/apiService';
 
 export default async function AllPlaylists() {
   const playlists = await apiService.getAllPlaylists();

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+
 import { auth } from '@/src/auth';
 import SignIn from '@/src/components/auth/SignIn';
 import SignOut from '@/src/components/auth/SignOut';

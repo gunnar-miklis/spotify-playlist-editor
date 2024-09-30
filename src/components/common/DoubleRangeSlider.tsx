@@ -1,14 +1,15 @@
 // TODO: finish this component
 
-import styles from '@/src/styles/double-range-slider.module.css';
 import {
-  useEffect,
-  useState,
   type ChangeEventHandler,
   type Dispatch,
   type InputHTMLAttributes,
   type SetStateAction,
+  useEffect,
+  useState,
 } from 'react';
+
+import styles from '@/src/styles/double-range-slider.module.css';
 
 type MinMax = [number, number];
 type Props = InputHTMLAttributes<HTMLInputElement> & {
