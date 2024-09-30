@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import Spotify from 'next-auth/providers/spotify';
 
 declare module 'next-auth' {
+  // eslint-disable-next-line no-unused-vars
   interface Session {
     accessToken?: string;
   }
@@ -16,12 +17,12 @@ const scope = [
   'playlist-modify-private',
 ].join(' ');
 
+const oAuthConfig = {
+  authorization: `https://accounts.spotify.com/authorize?scope=${scope}`,
+};
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    Spotify({
-      authorization: `https://accounts.spotify.com/authorize?scope=${scope}`,
-    }),
-  ],
+  providers: [Spotify(oAuthConfig)],
   callbacks: {
     jwt({ token, account }) {
       if (account && account.token_type === 'bearer') {
