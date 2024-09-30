@@ -3,7 +3,10 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { Track } from '@/src/types';
-import { msToMin, sortObjectsByField as sortTracks } from '@/src/utils/functions';
+import {
+  msToMin,
+  sortObjectsByField as sortTracks,
+} from '@/src/utils/functions';
 import AudioPlayback from './AudioPlayback';
 import styles from '@/src/styles/app.module.css';
 
@@ -20,7 +23,11 @@ export default function TablePlaylistTracks({ tracks }: Props) {
       setTable(tracks);
       setIsAsc(null!);
     } else {
-      const [sortedTracks, isAscToggled] = sortTracks<Track>(field, tracks, isAsc);
+      const [sortedTracks, isAscToggled] = sortTracks<Track>(
+        field,
+        tracks,
+        isAsc,
+      );
       setTable(sortedTracks);
       setIsAsc(isAscToggled);
     }
@@ -45,7 +52,9 @@ export default function TablePlaylistTracks({ tracks }: Props) {
             ) {
               return (
                 <th key={objectKey}>
-                  <button onClick={() => handleSortTable(objectKey as keyof Track)}>
+                  <button
+                    onClick={() => handleSortTable(objectKey as keyof Track)}
+                  >
                     {objectKey}
                     <div>
                       <span>&#x25B4;</span>
@@ -61,10 +70,23 @@ export default function TablePlaylistTracks({ tracks }: Props) {
       </thead>
       <tbody>
         {table.map(
-          ({ id, name, duration, artists, popularity, releaseDate, previewUrl, openSpotify }) => (
+          ({
+            id,
+            name,
+            duration,
+            artists,
+            popularity,
+            releaseDate,
+            previewUrl,
+            openSpotify,
+          }) => (
             <tr key={id}>
               <td>
-                <Link className={styles.link} href={openSpotify} target='_blank'>
+                <Link
+                  className={styles.link}
+                  href={openSpotify}
+                  target='_blank'
+                >
                   {name}
                 </Link>
               </td>

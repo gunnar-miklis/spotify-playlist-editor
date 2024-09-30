@@ -17,7 +17,11 @@ export default function TableAllPlaylists({ playlists }: Props) {
       setTable(playlists);
       setIsAsc(null!);
     } else {
-      const [sortedPlaylists, isAscToggled] = sortPlaylists<Playlist>(field, playlists, isAsc);
+      const [sortedPlaylists, isAscToggled] = sortPlaylists<Playlist>(
+        field,
+        playlists,
+        isAsc,
+      );
       setTable(sortedPlaylists);
       setIsAsc(isAscToggled);
     }
@@ -36,7 +40,9 @@ export default function TableAllPlaylists({ playlists }: Props) {
             (objectKey) =>
               objectKey !== 'id' && (
                 <th key={objectKey}>
-                  <button onClick={() => handleSortTable(objectKey as keyof Playlist)}>
+                  <button
+                    onClick={() => handleSortTable(objectKey as keyof Playlist)}
+                  >
                     {objectKey}
                     <div>
                       <span>&#x25B4;</span>

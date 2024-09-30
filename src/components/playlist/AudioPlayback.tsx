@@ -2,7 +2,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { MdOutlinePlayCircle, MdOutlineMotionPhotosPaused } from 'react-icons/md';
+import {
+  MdOutlinePlayCircle,
+  MdOutlineMotionPhotosPaused,
+} from 'react-icons/md';
 import styles from '@/src/styles/app.module.css';
 
 type Props = { source: string };
@@ -35,7 +38,11 @@ export default function AudioPlayback({ source }: Props) {
 
   return (
     <>
-      <audio onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} ref={audioRef}>
+      <audio
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        ref={audioRef}
+      >
         <source src={source} type='audio/mpeg' />
       </audio>
       <button className={styles['play-pause-button']} onClick={handlePlayPause}>

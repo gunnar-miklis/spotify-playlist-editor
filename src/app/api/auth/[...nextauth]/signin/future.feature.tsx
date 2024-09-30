@@ -11,7 +11,9 @@ export default async function SignIn() {
         Return to Home
       </Link>
       <h1 className={styles.h1}>SignIn with OAuth</h1>
-      <p className={styles.p}>You are going to be redirected to the Spotify Login in page.</p>
+      <p className={styles.p}>
+        You are going to be redirected to the Spotify Login in page.
+      </p>
     </main>
   );
 }

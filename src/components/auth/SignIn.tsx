@@ -18,8 +18,8 @@ export default function SignIn() {
 
       <p className={styles.p}>
         <small className={styles.small}>
-          *Secure via <strong className={styles.strong}>OAuth</strong> (Industry-standard protocol
-          for authorization)
+          *Secure via <strong className={styles.strong}>OAuth</strong>{' '}
+          (Industry-standard protocol for authorization)
         </small>
       </p>
     </form>

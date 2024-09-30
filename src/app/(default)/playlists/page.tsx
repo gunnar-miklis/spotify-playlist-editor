@@ -15,7 +15,9 @@ export default async function AllPlaylists() {
 
       <h1 className={styles.h1}>Playlists</h1>
       {playlists ? (
-        <section className={`${styles.section} ${styles['table-wrapper']} ${styles.paper}`}>
+        <section
+          className={`${styles.section} ${styles['table-wrapper']} ${styles.paper}`}
+        >
           <TableAllPlaylists playlists={playlists} />
         </section>
       ) : (

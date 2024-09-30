@@ -13,10 +13,14 @@ export function sortObjectsByField<ObjectType>(
 ): [ObjectType[], boolean] {
   const sortedArray = initalArray.toSorted((a, b) => {
     if (typeof a[field] === 'string' && typeof b[field] === 'string') {
-      return isAsc ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field]);
+      return isAsc
+        ? a[field].localeCompare(b[field])
+        : b[field].localeCompare(a[field]);
     }
     if (typeof a[field] === 'boolean' && typeof b[field] === 'boolean') {
-      return isAsc ? Number(a[field]) - Number(b[field]) : Number(b[field]) - Number(a[field]);
+      return isAsc
+        ? Number(a[field]) - Number(b[field])
+        : Number(b[field]) - Number(a[field]);
     }
     if (typeof a[field] === 'number' && typeof b[field] === 'number') {
       return isAsc ? a[field] - b[field] : b[field] - a[field];

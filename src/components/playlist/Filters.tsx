@@ -10,10 +10,16 @@ type Props = {
   releaseYears: number[];
 };
 
-export default function Filter({ minPopularity, maxPopularity, releaseYears }: Props) {
+export default function Filter({
+  minPopularity,
+  maxPopularity,
+  releaseYears,
+}: Props) {
   const selectedFilters = useRef<Map<string, string>>(new Map());
   const [popularity, setPopularity] = useState<number>(maxPopularity);
-  const [releaseDate, setReleaseDate] = useState<string>(releaseYears[0].toString());
+  const [releaseDate, setReleaseDate] = useState<string>(
+    releaseYears[0].toString(),
+  );
 
   const router = useRouter();
   const pathname = usePathname();
@@ -25,7 +31,10 @@ export default function Filter({ minPopularity, maxPopularity, releaseYears }: P
     if (e.target.checked) selectedFilters.current.set(key, value);
     else selectedFilters.current.delete(key);
 
-    const params = Array.from(selectedFilters.current, ([key, value]) => key + '=' + value);
+    const params = Array.from(
+      selectedFilters.current,
+      ([key, value]) => key + '=' + value,
+    );
     const href = `${pathname}?${params.join('&')}`;
     router.replace(href);
   };

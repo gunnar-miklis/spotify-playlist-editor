@@ -16,7 +16,10 @@ type Props = {
   };
 };
 
-export default async function SinglePlaylist({ params: { id }, searchParams }: Props) {
+export default async function SinglePlaylist({
+  params: { id },
+  searchParams,
+}: Props) {
   const playlist = await apiService.getOnePlaylist(id);
   const playlistTracks = await apiService.getPlaylistTracks(id);
 
@@ -24,10 +27,14 @@ export default async function SinglePlaylist({ params: { id }, searchParams }: P
   Object.keys(searchParams).forEach((key) => {
     switch (key) {
       case 'popularity':
-        filteredTracks = filteredTracks.filter((track) => track[key] <= Number(searchParams[key]));
+        filteredTracks = filteredTracks.filter(
+          (track) => track[key] <= Number(searchParams[key]),
+        );
         break;
       case 'releaseDate':
-        filteredTracks = filteredTracks.filter((track) => track[key].includes(searchParams[key]));
+        filteredTracks = filteredTracks.filter((track) =>
+          track[key].includes(searchParams[key]),
+        );
         break;
     }
   });
@@ -52,17 +59,24 @@ export default async function SinglePlaylist({ params: { id }, searchParams }: P
           maxPopularity={getMaxPopularity(filteredTracks)}
           releaseYears={getArrayOfYears(filteredTracks)}
         />
-        <CreateNewPlaylist playlist={playlist} filteredTracks={filteredTracks} />
+        <CreateNewPlaylist
+          playlist={playlist}
+          filteredTracks={filteredTracks}
+        />
       </section>
 
-      <section className={`${styles.section} ${styles['table-wrapper']} ${styles.paper}`}>
+      <section
+        className={`${styles.section} ${styles['table-wrapper']} ${styles.paper}`}
+      >
         {filteredTracks && <TablePlaylistTracks tracks={filteredTracks} />}
       </section>
     </>
   );
 }
 
-export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
   const { name } = await apiService.getOnePlaylist(id);
   return { title: name };
 }
@@ -78,6 +92,8 @@ function getMaxPopularity(allTracks: Track[]): number {
 }
 
 function getArrayOfYears(allTracks: Track[]): number[] {
-  const releaseYears = allTracks.map(({ releaseDate }) => Number(releaseDate.slice(0, 4)));
+  const releaseYears = allTracks.map(({ releaseDate }) =>
+    Number(releaseDate.slice(0, 4)),
+  );
   return [...new Set(releaseYears)].sort();
 }

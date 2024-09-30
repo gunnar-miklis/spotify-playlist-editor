@@ -4,7 +4,12 @@ import { useState } from 'react';
 import { MdOutlineCheckCircle } from 'react-icons/md';
 import { getUserId } from '@/src/app/actions/session/getUserId';
 import { createPlaylist } from '@/src/app/actions/playlists/createPlaylist';
-import type { AddItemsToPlaylistBody, CreatePlaylistBody, Playlist, Track } from '@/src/types';
+import type {
+  AddItemsToPlaylistBody,
+  CreatePlaylistBody,
+  Playlist,
+  Track,
+} from '@/src/types';
 import styles from '@/src/styles/app.module.css';
 
 type Props = {
@@ -51,15 +56,24 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
     <article className={`${styles.article} ${styles.paper}`}>
       <strong>Create a new playlist</strong>{' '}
       <p>
-        It&apos;ll create a copy of this playlist based on selected filters and current sorting.
+        It&apos;ll create a copy of this playlist based on selected filters and
+        current sorting.
       </p>
       {isCreatedSuccessful ? (
         <button className={styles.button} disabled>
           Successful <MdOutlineCheckCircle className={styles.icon} />
         </button>
       ) : (
-        <button className={styles.button} onClick={handleCreatePlaylist} disabled={isLoading}>
-          {isLoading ? <div className={styles.spinner}></div> : <span>Create Playlist</span>}
+        <button
+          className={styles.button}
+          onClick={handleCreatePlaylist}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <div className={styles.spinner}></div>
+          ) : (
+            <span>Create Playlist</span>
+          )}
         </button>
       )}
     </article>

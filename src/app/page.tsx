@@ -14,7 +14,11 @@ export default async function RootPage() {
 
       <section className={styles.section}>
         <article className={`${styles.article} ${styles.paper}`}>
-          {session ? <User {...session.user} /> : <h2 className={styles.h2}>Login</h2>}
+          {session ? (
+            <User {...session.user} />
+          ) : (
+            <h2 className={styles.h2}>Login</h2>
+          )}
         </article>
         <div className={styles.paper}>{session ? <SignOut /> : <SignIn />}</div>
       </section>

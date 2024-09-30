@@ -21,7 +21,11 @@ class ApiService {
   private _limit;
 
   constructor() {
-    this._api = async (method: HttpVerbs, endpoint: string, body?: PostBody) => {
+    this._api = async (
+      method: HttpVerbs,
+      endpoint: string,
+      body?: PostBody,
+    ) => {
       const session = await auth();
       if (!session) throw new Error('User not authenticated');
 
@@ -146,13 +150,21 @@ class ApiService {
     try {
       // Validate inputs before making the api call
       if (!userId) {
-        throw new Error('Failed to create a new playlist: "userId" is missing.');
+        throw new Error(
+          'Failed to create a new playlist: "userId" is missing.',
+        );
       }
       if (!metadata) {
-        throw new Error('Failed to create a new playlist: "metadata-object" is missing.');
+        throw new Error(
+          'Failed to create a new playlist: "metadata-object" is missing.',
+        );
       }
 
-      const apiResponse = await this._api('POST', `/users/${userId}/playlists`, metadata);
+      const apiResponse = await this._api(
+        'POST',
+        `/users/${userId}/playlists`,
+        metadata,
+      );
       if (!apiResponse.ok) {
         throw new Error(
           `Failed to create a new playlist: ${apiResponse.status} ${apiResponse.statusText}`,
@@ -179,10 +191,14 @@ class ApiService {
     try {
       // Validate inputs before making the api call
       if (!playlistId) {
-        throw new Error('Failed to create a new playlist: "playlistId" is missing.');
+        throw new Error(
+          'Failed to create a new playlist: "playlistId" is missing.',
+        );
       }
       if (!items) {
-        throw new Error('Failed to create a new playlist: "items-object" is missing.');
+        throw new Error(
+          'Failed to create a new playlist: "items-object" is missing.',
+        );
       }
       if (!items.uris.length) {
         throw new Error(
@@ -190,10 +206,16 @@ class ApiService {
         );
       }
       if (items.uris.length > 100) {
-        throw new Error('Api limit does not allow to add more than 100 tracks at once.');
+        throw new Error(
+          'Api limit does not allow to add more than 100 tracks at once.',
+        );
       }
 
-      const apiResponse = await this._api('POST', `/playlists/${playlistId}/tracks`, items);
+      const apiResponse = await this._api(
+        'POST',
+        `/playlists/${playlistId}/tracks`,
+        items,
+      );
       if (!apiResponse.ok) {
         throw new Error(
           `Failed to add tracks to the newly created playlist: ${apiResponse.status} ${apiResponse.statusText}`,

@@ -16,11 +16,17 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   selectedValues: Dispatch<SetStateAction<MinMax>>;
 };
 
-export default function DoubleRangeSlider({ boundaries: [min, max], selectedValues }: Props) {
+export default function DoubleRangeSlider({
+  boundaries: [min, max],
+  selectedValues,
+}: Props) {
   const [lowerVal, setLowerVal] = useState<number>(min);
   const [upperVal, setUpperVal] = useState<number>(max);
 
-  useEffect(() => selectedValues([lowerVal, upperVal]), [lowerVal, upperVal, selectedValues]);
+  useEffect(
+    () => selectedValues([lowerVal, upperVal]),
+    [lowerVal, upperVal, selectedValues],
+  );
 
   const handleChangerLower: ChangeEventHandler<HTMLInputElement> = (e) => {
     const currVal = parseInt(e.target.value);
@@ -35,8 +41,20 @@ export default function DoubleRangeSlider({ boundaries: [min, max], selectedValu
   return (
     <div className={styles['double-range-slider']}>
       <p>{min}</p>
-      <input type='range' min={min} max={max} value={lowerVal} onChange={handleChangerLower} />
-      <input type='range' min={min} max={max} value={upperVal} onChange={handleChangerUpper} />
+      <input
+        type='range'
+        min={min}
+        max={max}
+        value={lowerVal}
+        onChange={handleChangerLower}
+      />
+      <input
+        type='range'
+        min={min}
+        max={max}
+        value={upperVal}
+        onChange={handleChangerUpper}
+      />
       <p>{max}</p>
     </div>
   );

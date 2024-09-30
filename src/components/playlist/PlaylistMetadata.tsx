@@ -6,7 +6,11 @@ type Props = {
   totalTracks: number;
 };
 
-export default function PlaylistMetadata({ owner, visibility, totalTracks }: Props) {
+export default function PlaylistMetadata({
+  owner,
+  visibility,
+  totalTracks,
+}: Props) {
   return (
     <dl className={styles.dl}>
       <span>
