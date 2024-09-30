@@ -1,8 +1,11 @@
 {
   "extends": ["next/core-web-vitals", "plugin:jsx-a11y/recommended"],
+  "plugins": ["simple-import-sort", "react-refresh"],
   "rules": {
     "no-var": "error",
+    "no-unused-vars": "warn",
     "prefer-const": "error",
-    "object-shorthand": "warn"
+    "object-shorthand": "warn",
+    "simple-import-sort/imports": "warn"
   }
 }
