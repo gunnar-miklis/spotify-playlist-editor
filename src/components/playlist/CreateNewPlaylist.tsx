@@ -26,37 +26,40 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
     try {
       setIsLoading(true);
 
+      // collect data (userId, metadata, items)
       const userId = await getUserId();
 
       const metadata: CreatePlaylistBody = {
         name: playlist.name + ' (filtered)',
-        public: playlist.visibility,
+        public: playlist.visibility ?? false,
         description: 'Playlist filtered by "Spotify Filter Assistant"',
       };
+
       const items: AddItemsToPlaylistBody = {
         uris: filteredTracks.map(({ uri }) => uri),
         position: 0,
       };
 
+      // create playlist via Spotify API
       const result = await createPlaylist(userId, metadata, items);
 
+      // visual feedback: show success button for 2 seconds.
       if (result.message === 'success') {
         setIsCreatedSucessful(true);
-        const timer = setTimeout(() => {
-          setIsCreatedSucessful(false);
-          clearTimeout(timer);
-        }, 2000);
+        setTimeout(() => setIsCreatedSucessful(false), 2000);
       }
-      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
+
   return (
     <article className={`${styles.article} ${styles.paper}`}>
       <strong>Create a new playlist</strong>{' '}
       <p>
+        {/* FIXME: include sorting as well, as of now it doesn't include sorting */}
         It&apos;ll create a copy of this playlist based on selected filters and
         current sorting.
       </p>
