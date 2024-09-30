@@ -1,3 +1,5 @@
+import type { ElementType } from 'react';
+
 /**
  * Sorts an array of objects based on a field and toggles the sort order between ascending and descending.
  * @param field The property name to sort by.
@@ -40,4 +42,19 @@ export function msToMin(ms: number): string {
   const minutes: number = Math.floor(ms / 60 / 1000);
   const seconds: string = ((ms % 60000) / 1000).toFixed(0);
   return `${minutes.toString().padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+}
+
+/**
+ * Returns a React heading element based on given heading level.
+ *
+ * @param {number} level - The heading level (1-6).
+ * @returns {ElementType} The corresponding ElementType (h1-h6).
+ * @throws {Error} If the heading level is not between 1 and 6.
+ */
+export function getHeadingElement(level: number) {
+  if (level > 0 && level <= 6) {
+    return `h${level}` as ElementType;
+  } else {
+    throw new Error('Heading Level must be between 1-6');
+  }
 }

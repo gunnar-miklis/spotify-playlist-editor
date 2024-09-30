@@ -5,6 +5,7 @@ import type {
   GetCurrentUsersPlaylists,
   GetPlaylistItems,
   Playlist,
+  ResultMessage,
   Track,
 } from '@/src/types';
 
@@ -225,7 +226,8 @@ class ApiService {
       const data = await apiResponse.json();
       if (!data) throw new Error('Unexpected Error. data-object is empty.');
 
-      return { message: 'success' };
+      const result: ResultMessage = { message: 'success' };
+      return result;
     } catch (error) {
       throw error;
     }

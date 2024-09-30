@@ -1,8 +1,8 @@
 'use client';
 
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
+import MainWrapper from '@/src/components/layout/MainWrapper';
 import styles from '@/src/styles/app.module.css';
 
 type Props = {
@@ -12,16 +12,16 @@ type Props = {
 
 export default function Error({ error, reset }: Props) {
   return (
-    <main className={styles.main}>
-      <Link className={styles.link} href='/'>
-        Return to Home
-      </Link>
-      <h1 className={styles.h1}>Oops, there was an error.</h1>
+    <MainWrapper
+      headerLevel={1}
+      headerText='Oops, there was an error.'
+      navLink='Return to Home'
+    >
       <p className={styles.p}>{error.message}</p>
       <button className={styles.button} onClick={() => reset()}>
         Try again
       </button>
-    </main>
+    </MainWrapper>
   );
 }
 

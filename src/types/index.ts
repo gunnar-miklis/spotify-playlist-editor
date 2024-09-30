@@ -1,3 +1,17 @@
+import type { ReactNode } from 'react';
+
+export type ResultMessage = {
+  message: 'success' | 'error';
+};
+
+export type WrapperProps = {
+  children: ReactNode;
+  headerLevel: 1 | 2 | 3 | 4 | 5 | 6;
+  headerText: string;
+  navLink?: string;
+  navLinkHref?: string;
+};
+
 // Types used in the application
 export type Playlist = {
   id: string;

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
+import MainWrapper from '@/src/components/layout/MainWrapper';
 import CreateNewPlaylist from '@/src/components/playlist/CreateNewPlaylist';
 import Filter from '@/src/components/playlist/Filters';
 import PlaylistMetadata from '@/src/components/playlist/PlaylistMetadata';
@@ -41,18 +41,21 @@ export default async function SinglePlaylist({
   });
 
   return (
-    <>
-      <Link className={styles.link} href='/playlists'>
-        Go back
-      </Link>
-
-      <h1 className={styles.h1}>Playlist: {playlist.name}</h1>
-
-      <section className={`${styles.section} ${styles.paper}`}>
+    <MainWrapper
+      headerLevel={1}
+      headerText={`Playlist: ${playlist.name}`}
+      navLink='Go back'
+      navLinkHref='/playlists'
+    >
+      <section
+        id='playlist-metadata'
+        className={`${styles.section} ${styles.paper}`}
+      >
         <PlaylistMetadata {...playlist} />
       </section>
 
       <section
+        id='filter-panel'
         className={`${styles.section} ${styles['flex-row']} ${styles['flex-wrap']} ${styles['gap-sm']}`}
       >
         <Filter
@@ -67,11 +70,12 @@ export default async function SinglePlaylist({
       </section>
 
       <section
+        id='playlist-tracks'
         className={`${styles.section} ${styles['table-wrapper']} ${styles.paper}`}
       >
         {filteredTracks && <TablePlaylistTracks tracks={filteredTracks} />}
       </section>
-    </>
+    </MainWrapper>
   );
 }
 

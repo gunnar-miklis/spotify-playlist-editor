@@ -1,18 +1,15 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
+import MainWrapper from '@/src/components/layout/MainWrapper';
 import styles from '@/src/styles/app.module.css';
 
 export default function NotFound() {
   return (
-    <main className={styles.main}>
-      <Link className={styles.link} href='/'>
-        Return to Home
-      </Link>
-      <h1 className={styles.h1}>NotFound</h1>
+    <MainWrapper headerLevel={1} headerText={title} navLink='Return to Home'>
       <p className={styles.p}>Could not find requested resource</p>
-    </main>
+    </MainWrapper>
   );
 }
 
-export const metadata: Metadata = { title: 'NotFound' };
+const title = 'Not Found';
+export const metadata: Metadata = { title };
