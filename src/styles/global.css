@@ -60,7 +60,6 @@ body {
 
   width: 100%;
   max-width: var(--app-width);
-  min-width: 480px;
   min-height: 100vh;
   margin: 0 auto;
   padding: var(--space-lg) var(--space-md);
