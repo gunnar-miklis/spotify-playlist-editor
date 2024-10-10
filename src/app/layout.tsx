@@ -1,4 +1,4 @@
-import '@/src/styles/global.css';
+import '@/src/styles/main.css';
 
 import { Red_Hat_Display } from 'next/font/google';
 import type { ReactNode } from 'react';
@@ -18,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <div className='app'>{children}</div>
+      </body>
     </html>
   );
 }

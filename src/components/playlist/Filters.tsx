@@ -1,9 +1,10 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { type ChangeEventHandler,useRef, useState } from 'react';
+import { type ChangeEventHandler, useRef, useState } from 'react';
 
-import styles from '@/src/styles/app.module.css';
+import Paper from '@/src/components/layout/wrappers/Paper/Paper';
+import styles from '@/src/components/playlist/filters.module.css';
 
 type Props = {
   minPopularity: number;
@@ -42,11 +43,9 @@ export default function Filter({
 
   return (
     <>
-      <article className={`${styles.article} ${styles.paper}`}>
-        <div
-          className={`${styles['flex-row']} ${styles['gap-sm']}`}
-          style={{ alignItems: 'center' }}
-        >
+      {/* SECTION: popularity filter */}
+      <Paper className='flex-col'>
+        <div className='flex-row gap-sm' style={{ alignItems: 'center' }}>
           <input
             className={styles.checkbox}
             type='checkbox'
@@ -54,14 +53,11 @@ export default function Filter({
             value={popularity}
             onChange={handleFiltering}
           />
-          <strong className={styles.p}>Popularity: {popularity}</strong>
+          <label className={styles.label}>Popularity: {popularity}</label>
         </div>
 
-        <div
-          className={`${styles['flex-row']} ${styles['gap-sm']}`}
-          style={{ alignItems: 'center' }}
-        >
-          <p className={styles.p}>{minPopularity}</p>
+        <div className='flex-row gap-sm' style={{ alignItems: 'center' }}>
+          <p className='p'>{minPopularity}</p>
           <input
             className={styles.range}
             type='range'
@@ -70,15 +66,13 @@ export default function Filter({
             value={popularity}
             onChange={(e) => setPopularity(parseInt(e.target.value))}
           />
-          <p className={styles.p}>{maxPopularity}</p>
+          <p className='p'>{maxPopularity}</p>
         </div>
-      </article>
+      </Paper>
 
-      <article className={`${styles.article} ${styles.paper}`}>
-        <div
-          className={`${styles['flex-row']} ${styles['gap-sm']}`}
-          style={{ alignItems: 'center' }}
-        >
+      {/* SECTION: release date filter */}
+      <Paper className='flex-col'>
+        <div className='flex-row gap-sm' style={{ alignItems: 'center' }}>
           <input
             className={styles.checkbox}
             type='checkbox'
@@ -86,15 +80,12 @@ export default function Filter({
             value={releaseDate}
             onChange={handleFiltering}
           />
-          <strong className={styles.p}>Year: {releaseDate}</strong>
+          <label className={styles.label}>Year: {releaseDate}</label>
         </div>
 
-        <div
-          className={`${styles['flex-row']} ${styles['gap-sm']}`}
-          style={{ alignItems: 'center' }}
-        >
+        <div className='flex-row gap-sm' style={{ alignItems: 'center' }}>
           <select
-            className={`${styles.select} ${styles.button}`}
+            className={`${styles.select} button`}
             onChange={(e) => setReleaseDate(e.target.value)}
           >
             {releaseYears.map((releaseDate) => (
@@ -104,7 +95,7 @@ export default function Filter({
             ))}
           </select>
         </div>
-      </article>
+      </Paper>
     </>
   );
 }

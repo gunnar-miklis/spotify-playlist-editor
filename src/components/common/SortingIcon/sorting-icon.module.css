@@ -1,0 +1,12 @@
+.sorting-icon {
+  display: inline-flex;
+  flex-flow: column nowrap;
+}
+
+.sorting-icon__up {
+  margin-bottom: -6px;
+}
+
+.sorting-icon__down {
+  margin-top: -6px;
+}

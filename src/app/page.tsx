@@ -4,36 +4,45 @@ import { auth } from '@/src/auth';
 import SignIn from '@/src/components/auth/SignIn';
 import SignOut from '@/src/components/auth/SignOut';
 import User from '@/src/components/auth/User';
-import MainWrapper from '@/src/components/layout/MainWrapper';
-import styles from '@/src/styles/app.module.css';
+import AppWrapper from '@/src/components/layout/wrappers/AppWrapper/AppWrapper';
+import Paper from '@/src/components/layout/wrappers/Paper/Paper';
+import type { DynamicHeadingType } from '@/src/types';
+
+const title = 'Spotify Playlist Assistant';
+const heading: DynamicHeadingType = {
+  level: 1,
+  text: title,
+};
+export const metadata: Metadata = { title };
 
 export default async function RootPage() {
   const session = await auth();
 
   if (session) {
     return (
-      <MainWrapper headerLevel={1} headerText={title}>
-        <article className={`${styles.article} ${styles.paper}`}>
-          <User {...session.user} />
-        </article>
-        <div className={styles.paper}>
-          <SignOut />
-        </div>
-      </MainWrapper>
+      <AppWrapper heading={heading}>
+        <section id='user' className='section'>
+          <Paper className='flex-col'>
+            <User {...session.user} />
+          </Paper>
+          <Paper>
+            <SignOut />
+          </Paper>
+        </section>
+      </AppWrapper>
     );
   }
 
   return (
-    <MainWrapper headerLevel={1} headerText={title}>
-      <article className={`${styles.article} ${styles.paper}`}>
-        <h2 className={styles.h2}>Login</h2>
-      </article>
-      <div className={styles.paper}>
-        <SignIn />
-      </div>
-    </MainWrapper>
+    <AppWrapper heading={heading}>
+      <section id='user' className='section'>
+        <Paper>
+          <h2 className='h2'>Login</h2>
+        </Paper>
+        <Paper>
+          <SignIn />
+        </Paper>
+      </section>
+    </AppWrapper>
   );
 }
-
-const title = 'Spotify Playlist Assistant';
-export const metadata: Metadata = { title };

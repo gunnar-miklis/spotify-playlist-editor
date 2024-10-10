@@ -1,4 +1,5 @@
-import styles from '@/src/styles/app.module.css';
+import Paper from '@/src/components/layout/wrappers/Paper/Paper';
+import styles from '@/src/components/playlist/playlist-metadata.module.css';
 
 type Props = {
   owner: string;
@@ -12,21 +13,25 @@ export default function PlaylistMetadata({
   totalTracks,
 }: Props) {
   return (
-    <dl className={styles.dl}>
-      <span>
-        <dt>Owner: </dt>
-        <dd>{owner}</dd>
-      </span>
-      <span> | </span>
-      <span>
-        <dt>Visibility: </dt>
-        <dd>{visibility ? 'Public' : 'Private'}</dd>
-      </span>
-      <span> | </span>
-      <span>
-        <dt>Total Tracks: </dt>
-        <dd>{totalTracks}</dd>
-      </span>
-    </dl>
+    <Paper>
+      <dl className={styles['list']}>
+        <span className={styles['list__item']}>
+          <dt>Owner: </dt>
+          <dd className={styles['list__item--bold']}>{owner}</dd>
+        </span>
+        <span className={styles['list__separator']}> | </span>
+        <span className={styles['list__item']}>
+          <dt>Visibility: </dt>
+          <dd className={styles['list__item--bold']}>
+            {visibility ? 'Public' : 'Private'}
+          </dd>
+        </span>
+        <span className={styles['list__separator']}> | </span>
+        <span className={styles['list__item']}>
+          <dt>Total Tracks: </dt>
+          <dd className={styles['list__item--bold']}>{totalTracks}</dd>
+        </span>
+      </dl>
+    </Paper>
   );
 }

@@ -1,18 +1,19 @@
-import type { ReactNode } from 'react';
-
+// SECTION: General Types
 export type ResultMessage = {
   message: 'success' | 'error';
 };
 
-export type WrapperProps = {
-  children: ReactNode;
-  headerLevel: 1 | 2 | 3 | 4 | 5 | 6;
-  headerText: string;
-  navLink?: string;
-  navLinkHref?: string;
+export type DynamicHeadingType = {
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  text: string | null;
 };
 
-// Types used in the application
+export type NavLinkType = {
+  text: string;
+  href?: string;
+};
+
+// SECTION: playlist/track related types used in the application
 export type Playlist = {
   id: string;
   name: string;
@@ -33,7 +34,7 @@ export type Track = {
   apiEndpoint: string;
 };
 
-// Types for the Spotify Api
+// SECTION: Types for the Spotify Api
 /**
  * Excerpt of Spotif Api GET response
  */

@@ -1,37 +1,49 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
-import MainWrapper from '@/src/components/layout/MainWrapper';
+import AppWrapper from '@/src/components/layout/wrappers/AppWrapper/AppWrapper';
 import TableAllPlaylists from '@/src/components/playlists/TableAllPlaylists';
-import styles from '@/src/styles/app.module.css';
+import type { DynamicHeadingType, NavLinkType } from '@/src/types';
 import apiService from '@/src/utils/apiService';
+
+const title = 'Playlists';
+const heading: DynamicHeadingType = {
+  level: 1,
+  text: title,
+};
+const navLink: NavLinkType = {
+  text: 'Go back',
+};
+export const metadata: Metadata = { title };
 
 export default async function AllPlaylists() {
   const playlists = await apiService.getAllPlaylists();
 
   if (playlists.length) {
     return (
-      <MainWrapper headerLevel={1} headerText={title} navLink='Go back'>
-        <section
-          id='playlists'
-          className={`${styles.section} ${styles['table-wrapper']} ${styles.paper}`}
-        >
-          <TableAllPlaylists playlists={playlists} />
-        </section>
-      </MainWrapper>
+      <Layout>
+        <TableAllPlaylists playlists={playlists} />
+      </Layout>
     );
   }
 
   return (
-    <MainWrapper headerLevel={1} headerText={title} navLink='Go back'>
-      <div className={styles.paper}>
-        <strong className={styles.p}>No found</strong>
-      </div>
-    </MainWrapper>
+    <Layout>
+      <strong className='strong'>No Playlist found</strong>
+    </Layout>
   );
 }
 
-const title = 'Playlists';
-export const metadata: Metadata = {
-  title,
-  description: "Current User's Playlists",
+type LayoutProps = {
+  children: ReactNode;
 };
+
+function Layout({ children }: LayoutProps) {
+  return (
+    <AppWrapper heading={heading} navLink={navLink}>
+      <section className='section' id='playlists'>
+        {children}
+      </section>
+    </AppWrapper>
+  );
+}

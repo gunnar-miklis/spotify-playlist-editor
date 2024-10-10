@@ -1,0 +1,11 @@
+.play-pause-button {
+  background-color: transparent;
+  color: var(--text-col);
+  opacity: 0.8;
+  font-size: 1.3rem;
+}
+
+.play-pause-button:hover,
+.play-pause-button:focus {
+  opacity: 1;
+}

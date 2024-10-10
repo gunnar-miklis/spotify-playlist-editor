@@ -1,5 +1,3 @@
-import type { ElementType } from 'react';
-
 /**
  * Sorts an array of objects based on a field and toggles the sort order between ascending and descending.
  * @param field The property name to sort by.
@@ -45,16 +43,29 @@ export function msToMin(ms: number): string {
 }
 
 /**
- * Returns a React heading element based on given heading level.
- *
- * @param {number} level - The heading level (1-6).
- * @returns {ElementType} The corresponding ElementType (h1-h6).
- * @throws {Error} If the heading level is not between 1 and 6.
+ * Returns the first two letters of a string, capitalized.
+ * @param {string} name The string to get initials from.
+ * @returns {string} The first two letters of the string, capitalized.
  */
-export function getHeadingElement(level: number) {
-  if (level > 0 && level <= 6) {
-    return `h${level}` as ElementType;
-  } else {
-    throw new Error('Heading Level must be between 1-6');
-  }
+export function getIntials(name: string) {
+  return (name.charAt(0) + name.charAt(1)).toUpperCase();
+}
+
+/**
+ * Converts any given string into kebab case (words are separated by hyphens).
+ *
+ * @example
+ * convertToKebabCase('Spotify Playlist Assistant'); // => 'spotify-playlist-assistant'
+ * convertToKebabCase('Playlist: 07/11 ++'); // => 'playlist-07-11'
+ *
+ * @param {string} str - the string to convert into kebab case.
+ * @returns {string} the formatted string.
+ */
+export function convertToKebabCase(str: string): string {
+  const formattedStr = str
+    .toLowerCase()
+    .replace(/\W+(?=\W?)/g, '-') // replaces everything non-word char with "-"
+    .replace(/(^\W+)|(\W+$)/g, ''); // remove a non-word char at the beginning and end of the string
+
+  return formattedStr;
 }

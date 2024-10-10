@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--space-sm);
+}
+
+.list__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.list__item--bold {
+  font-weight: bold;
+}

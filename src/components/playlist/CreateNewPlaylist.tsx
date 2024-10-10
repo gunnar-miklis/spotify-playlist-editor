@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { MdOutlineCheckCircle } from 'react-icons/md';
 
 import { createPlaylist } from '@/src/app/actions/playlists/createPlaylist';
 import { getUserId } from '@/src/app/actions/session/getUserId';
-import styles from '@/src/styles/app.module.css';
+import InlineSpinner from '@/src/components/common/InlineSpinner/InlineSpinner';
+import Paper from '@/src/components/layout/wrappers/Paper/Paper';
+import styles from '@/src/components/playlist/create-new-playlist.module.css';
 import type {
   AddItemsToPlaylistBody,
   CreatePlaylistBody,
@@ -55,31 +57,45 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
     }
   };
 
+  if (isCreatedSuccessful) {
+    return (
+      <Layout>
+        <button className='button button--wait' disabled>
+          Successful <MdOutlineCheckCircle className={styles.icon} />
+        </button>
+      </Layout>
+    );
+  }
+
   return (
-    <article className={`${styles.article} ${styles.paper}`}>
-      <strong>Create a new playlist</strong>{' '}
-      <p>
+    <Layout>
+      <button
+        className='button'
+        onClick={handleCreatePlaylist}
+        disabled={isLoading}
+      >
+        {isLoading ? <InlineSpinner /> : 'Create Playlist'}
+      </button>
+    </Layout>
+  );
+}
+
+type LayoutProps = {
+  children: ReactNode;
+};
+
+function Layout({ children }: LayoutProps) {
+  return (
+    <Paper className='flex-col'>
+      <strong className='strong'>Create a new playlist</strong>
+
+      <p className='p'>
         {/* FIXME: include sorting as well, as of now it doesn't include sorting */}
         It&apos;ll create a copy of this playlist based on selected filters and
         current sorting.
       </p>
-      {isCreatedSuccessful ? (
-        <button className={styles.button} disabled>
-          Successful <MdOutlineCheckCircle className={styles.icon} />
-        </button>
-      ) : (
-        <button
-          className={styles.button}
-          onClick={handleCreatePlaylist}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <div className={styles.spinner}></div>
-          ) : (
-            <span>Create Playlist</span>
-          )}
-        </button>
-      )}
-    </article>
+
+      {children}
+    </Paper>
   );
 }

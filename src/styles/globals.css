@@ -1,0 +1,97 @@
+/* SECTION: LAYOUT */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.nav {
+}
+.header {
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.article {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  gap: var(--space-sm);
+}
+.footer {
+}
+
+/* SECTION: TYPOGRAPHY */
+.h1 {
+}
+.h2 {
+}
+.h3 {
+}
+.h4 {
+}
+.p {
+  font-size: 1rem;
+}
+.small {
+  opacity: 0.75;
+}
+.strong {
+}
+
+/* SECTION: INTERACTIVE ELEMENTS */
+.link {
+  border-bottom: 2px solid transparent;
+
+  color: var(--col-accent);
+  font-weight: bold;
+}
+.link:hover,
+.link:focus {
+  color: var(--col-accent-active);
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  border: 1px solid var(--col-accent);
+  border-radius: var(--border-radius);
+  padding: 0.8rem 1rem;
+
+  font-weight: bold;
+  color: var(--col-bg);
+  background-color: var(--col-accent);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+
+  cursor: pointer;
+}
+.button:hover,
+.button:focus {
+  background-color: var(--col-accent-active);
+}
+.button--wait {
+  cursor: wait;
+}
+.button--wait:hover,
+.button--wait:focus {
+  background-color: var(--col-accent);
+}
+.button--full-width {
+  width: 100%;
+}
+
+/* SECTION: OTHER ELEMENTS */
+.image {
+}
+
+/* SECTION: RESPONSIVENESS */
+@media only screen and (max-width: 576px) {
+}
+@media (min-width: 577px) and (max-width: 992px) {
+}
+@media (min-width: 993px) {
+}

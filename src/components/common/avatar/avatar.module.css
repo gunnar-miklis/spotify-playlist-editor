@@ -1,0 +1,23 @@
+.avatar {
+  margin-left: var(--space-lg);
+  border: 3px solid var(--col-text);
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+
+.avatar__image,
+.avatar__placeholder {
+  width: 45px;
+  height: 45px;
+}
+
+.avatar__image {
+  object-fit: cover;
+}
+
+.avatar__placeholder {
+  text-align: center;
+  align-content: center;
+  opacity: 0.7;
+}

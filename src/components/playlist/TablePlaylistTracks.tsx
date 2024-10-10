@@ -3,14 +3,15 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import styles from '@/src/styles/app.module.css';
+import SortingIcon from '@/src/components/common/SortingIcon/SortingIcon';
+import styles from '@/src/components/layout/Table/table.module.css';
+import Paper from '@/src/components/layout/wrappers/Paper/Paper';
+import AudioPlayback from '@/src/components/playlist/AudioPlayback';
 import type { Track } from '@/src/types';
 import {
   msToMin,
   sortObjectsByField as sortTracks,
 } from '@/src/utils/functions';
-
-import AudioPlayback from './AudioPlayback';
 
 type Props = { tracks: Track[] };
 
@@ -36,73 +37,72 @@ export default function TablePlaylistTracks({ tracks }: Props) {
   }
 
   if (!table || !table.length) return;
-  <div className={styles.paper}>
-    <h2 className={styles.h2}>No tracks found</h2>;
-  </div>;
+  <Paper>
+    <h2 className='h2'>No tracks found</h2>;
+  </Paper>;
 
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          {Object.keys(table[0]).map((objectKey) => {
-            if (
-              objectKey === 'name' ||
-              objectKey === 'duration' ||
-              objectKey === 'artists' ||
-              objectKey === 'releaseDate' ||
-              objectKey === 'popularity'
-            ) {
-              return (
-                <th key={objectKey}>
-                  <button
-                    onClick={() => handleSortTable(objectKey as keyof Track)}
-                  >
-                    {objectKey}
-                    <div>
-                      <span>&#x25B4;</span>
-                      <span>&#x25BE;</span>
-                    </div>
-                  </button>
-                </th>
-              );
-            }
-          })}
-          <th>Preview</th>
-        </tr>
-      </thead>
-      <tbody>
-        {table.map(
-          ({
-            id,
-            name,
-            duration,
-            artists,
-            popularity,
-            releaseDate,
-            previewUrl,
-            openSpotify,
-          }) => (
-            <tr key={id}>
-              <td>
-                <Link
-                  className={styles.link}
-                  href={openSpotify}
-                  target='_blank'
+    <Paper className={styles['table']}>
+      <table className={styles['table__wrapper']}>
+        <thead className={styles['table__header']}>
+          <tr className={styles['table__row']}>
+            {Object.keys(table[0]).map((objectKey) => {
+              if (
+                objectKey === 'name' ||
+                objectKey === 'duration' ||
+                objectKey === 'artists' ||
+                objectKey === 'releaseDate' ||
+                objectKey === 'popularity'
+              ) {
+                return (
+                  <th className={styles['table__cell-head']} key={objectKey}>
+                    <button
+                      className={styles['table__sort-button']}
+                      onClick={() => handleSortTable(objectKey as keyof Track)}
+                    >
+                      {objectKey}
+                      <SortingIcon />
+                    </button>
+                  </th>
+                );
+              }
+            })}
+            <th>PREVIEW</th>
+          </tr>
+        </thead>
+        <tbody className={styles['table__body']}>
+          {table.map(
+            ({
+              id,
+              name,
+              duration,
+              artists,
+              popularity,
+              releaseDate,
+              previewUrl,
+              openSpotify,
+            }) => (
+              <tr className={styles['table__row']} key={id}>
+                <td className={styles['table__cell']}>
+                  <Link className='link' href={openSpotify} target='_blank'>
+                    {name}
+                  </Link>
+                </td>
+                <td className={styles['table__cell']}>{artists}</td>
+                <td className={styles['table__cell']}>{msToMin(duration)}</td>
+                <td className={styles['table__cell']}>{popularity}</td>
+                <td className={styles['table__cell']}>{releaseDate}</td>
+                <td
+                  className={styles['table__cell']}
+                  style={{ display: 'flex' }}
                 >
-                  {name}
-                </Link>
-              </td>
-              <td>{artists}</td>
-              <td>{msToMin(duration)}</td>
-              <td>{popularity}</td>
-              <td>{releaseDate}</td>
-              <td style={{ display: 'flex' }}>
-                <AudioPlayback source={previewUrl} />
-              </td>
-            </tr>
-          ),
-        )}
-      </tbody>
-    </table>
+                  <AudioPlayback source={previewUrl} />
+                </td>
+              </tr>
+            ),
+          )}
+        </tbody>
+      </table>
+    </Paper>
   );
 }

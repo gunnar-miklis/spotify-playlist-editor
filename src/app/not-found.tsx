@@ -1,15 +1,22 @@
 import type { Metadata } from 'next';
 
-import MainWrapper from '@/src/components/layout/MainWrapper';
-import styles from '@/src/styles/app.module.css';
+import AppWrapper from '@/src/components/layout/wrappers/AppWrapper/AppWrapper';
+import type { DynamicHeadingType, NavLinkType } from '@/src/types';
+
+const title = 'Not Found';
+const heading: DynamicHeadingType = {
+  level: 1,
+  text: title,
+};
+const navLink: NavLinkType = {
+  text: 'Return to Home',
+};
+export const metadata: Metadata = { title };
 
 export default function NotFound() {
   return (
-    <MainWrapper headerLevel={1} headerText={title} navLink='Return to Home'>
-      <p className={styles.p}>Could not find requested resource</p>
-    </MainWrapper>
+    <AppWrapper heading={heading} navLink={navLink}>
+      <p className='p'>Could not find requested resource</p>
+    </AppWrapper>
   );
 }
-
-const title = 'Not Found';
-export const metadata: Metadata = { title };

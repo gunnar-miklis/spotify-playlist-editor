@@ -1,0 +1,42 @@
+:root {
+  --col-text: light-dark(#000000, #f0f0f0);
+  --col-bg: light-dark(#f0f0f0, #000000);
+  --col-accent: light-dark(#0cb661d9, #2de97bd9);
+  --col-accent-active: light-dark(#0cb661, #2de97b);
+  --col-card-bg: light-dark(#0f0f0f0f, #f0f0f020);
+  --col-selection-text: light-dark(black, white);
+  --col-selection-bg: light-dark(#00eb4e2d, #4fdb7e62);
+  --col-bg-gradient: linear-gradient(
+    0deg,
+    hsl(0deg 0% 0%) 0%,
+    hsl(114deg 53% 4%) 30%,
+    hsl(114deg 53% 4%) 60%,
+    hsl(0deg 0% 0%) 100%
+  );
+
+  --app-width: 992px;
+
+  --font-size: 16px;
+  --base-size: 1.6rem;
+  --scale: 2;
+
+  --border-radius: var(--base-size);
+
+  --space-sm: calc(var(--base-size) / var(--scale));
+  --space-md: var(--base-size);
+  --space-lg: calc(var(--base-size) * var(--scale));
+
+  --transition: ease-out 0.18s;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --col-bg-gradient: linear-gradient(
+      0deg,
+      hsl(0deg 0% 100%) 0%,
+      hsl(108deg 28% 95%) 30%,
+      hsl(108deg 28% 95%) 60%,
+      hsl(0deg 0% 100%) 100%
+    );
+  }
+}

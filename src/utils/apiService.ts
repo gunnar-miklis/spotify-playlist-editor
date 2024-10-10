@@ -28,7 +28,7 @@ class ApiService {
       body?: PostBody,
     ) => {
       const session = await auth();
-      if (!session) throw new Error('User not authenticated');
+      if (!session) throw new Error('User is not authenticated');
 
       return fetch(`https://api.spotify.com/v1${endpoint}`, {
         method,

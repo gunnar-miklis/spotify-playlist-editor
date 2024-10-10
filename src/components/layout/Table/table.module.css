@@ -1,0 +1,56 @@
+.table {
+  overflow-x: auto;
+}
+
+.table__wrapper {
+  border-collapse: collapse;
+  flex-grow: 1;
+}
+
+.table__row {
+  border-bottom: 1px solid var(--col-card-bg);
+}
+
+.table__cell-head,
+.table__cell {
+  padding: var(--space-sm);
+}
+
+.table__cell-head {
+  text-align: left;
+  text-transform: uppercase;
+  vertical-align: baseline;
+}
+
+.table__cell {
+  vertical-align: top;
+}
+
+.table__sort-button {
+  color: var(--col-text);
+  background-color: transparent;
+  text-align: inherit;
+  text-transform: inherit;
+
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+
+  cursor: pointer;
+}
+.table__sort-button:hover {
+  color: var(--col-accent-active);
+}
+
+.table__sort-button-icon {
+  display: inline-flex;
+  flex-flow: column nowrap;
+  padding-right: var(--space-sm);
+}
+.table__sort-button-icon span:first-child {
+  margin-bottom: -6px;
+}
+.table__sort-button-icon span:last-child {
+  margin-top: -6px;
+}

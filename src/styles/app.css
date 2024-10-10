@@ -1,0 +1,36 @@
+:root {
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+  transition: all var(--transition);
+}
+
+::selection {
+  color: var(--col-selection-text);
+  background-color: var(--col-selection-bg);
+}
+
+html {
+  font-size: var(--font-size);
+  color: var(--col-text);
+  background: var(--col-bg);
+  background-image: var(--col-bg-gradient);
+}
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  margin: 0 auto;
+  max-width: var(--app-width);
+  min-height: 100vh;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-md);
+
+  max-width: 100%;
+}
