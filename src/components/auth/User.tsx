@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import type { User } from 'next-auth';
 
-import Avatar from '@/src/components/common/avatar/Avatar';
-import AvatarImage from '@/src/components/common/avatar/AvatarImage';
+import Avatar, { AvatarImage } from '@/src/components/common/Avatar/Avatar';
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
 
 type Props = User;

@@ -1,14 +1,21 @@
 import Image from 'next/image';
+import type { ReactNode } from 'react';
 
 import styles from '@/src/components/common/avatar/avatar.module.css';
 import { getIntials } from '@/src/utils/functions';
 
-type Props = {
+type AvatarProps = { children: ReactNode };
+
+export default function Avatar({ children }: AvatarProps) {
+  return <div className={styles.avatar}>{children}</div>;
+}
+
+type AvatarImageProps = {
   userName: string;
   userImage?: string | null;
 };
 
-export default function AvatarImage({ userName, userImage }: Props) {
+export function AvatarImage({ userName, userImage }: AvatarImageProps) {
   if (userImage) {
     return (
       <Image
