@@ -21,6 +21,8 @@ export type Playlist = {
   visibility: boolean;
   totalTracks: number;
 };
+export type PlaylistProperties = Partial<keyof Playlist>;
+
 export type Track = {
   id: string;
   uri: string;
@@ -33,6 +35,7 @@ export type Track = {
   openSpotify: string;
   apiEndpoint: string;
 };
+export type TrackProperties = Partial<keyof Track>;
 
 // SECTION: Types for the Spotify Api
 /**

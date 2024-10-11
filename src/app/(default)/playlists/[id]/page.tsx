@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 
 import AppWrapper from '@/src/components/layout/wrappers/AppWrapper/AppWrapper';
 import FilterPanel from '@/src/components/playlist/FilterPanel/FilterPanel';
-import PlaylistMetadata from '@/src/components/playlist/PlaylistMetadata';
-import TablePlaylistTracks from '@/src/components/playlist/TablePlaylistTracks';
+import PlaylistMetadata from '@/src/components/playlist/PlaylistMetadata/PlaylistMetadata';
+import Tracks from '@/src/components/playlist/Tracks';
 import type {
   DynamicHeadingType,
   NavLinkType,
@@ -63,7 +63,7 @@ export default async function SinglePlaylist({
   if (filteredTracks.length) {
     return (
       <Layout playlist={playlist} filteredTracks={filteredTracks}>
-        <TablePlaylistTracks tracks={filteredTracks} />
+        <Tracks tracks={filteredTracks} />
       </Layout>
     );
   }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 import AppWrapper from '@/src/components/layout/wrappers/AppWrapper/AppWrapper';
-import TableAllPlaylists from '@/src/components/playlists/TableAllPlaylists';
+import Playlists from '@/src/components/playlists/Playlists';
 import type { DynamicHeadingType, NavLinkType } from '@/src/types';
 import apiService from '@/src/utils/apiService';
 
@@ -22,7 +22,7 @@ export default async function AllPlaylists() {
   if (playlists.length) {
     return (
       <Layout>
-        <TableAllPlaylists playlists={playlists} />
+        <Playlists playlists={playlists} />
       </Layout>
     );
   }
