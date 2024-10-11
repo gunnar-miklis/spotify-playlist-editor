@@ -12,7 +12,7 @@ Spotify Playlist Assistant is a simple interface that provides methods to intera
 
 &nbsp;
 
-![Screenshot of the prototype](/public/screenshot.webp)
+![Screenshot of the prototype](https://res.cloudinary.com/dyrcsywk9/image/upload/v1728660476/spotify-playlist-assistant-v0-laptop.webp)
 
 &nbsp;
 
