@@ -7,7 +7,7 @@ import {
   MdOutlinePlayCircle,
 } from 'react-icons/md';
 
-import styles from '@/src/components/playlist/audio-playback.module.css';
+import styles from '@/src/components/playlist/AudioPlayback/audio-playback.module.css';
 
 type Props = { source: string };
 

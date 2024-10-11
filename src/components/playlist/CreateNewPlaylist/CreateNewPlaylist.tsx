@@ -7,7 +7,7 @@ import { createPlaylist } from '@/src/app/actions/playlists/createPlaylist';
 import { getUserId } from '@/src/app/actions/session/getUserId';
 import InlineSpinner from '@/src/components/common/InlineSpinner/InlineSpinner';
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
-import styles from '@/src/components/playlist/create-new-playlist.module.css';
+import styles from '@/src/components/playlist/CreateNewPlaylist/create-new-playlist.module.css';
 import type {
   AddItemsToPlaylistBody,
   CreatePlaylistBody,

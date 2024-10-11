@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { type ChangeEventHandler, useRef, useState } from 'react';
 
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
-import styles from '@/src/components/playlist/filters.module.css';
+import styles from '@/src/components/playlist/FilterPanel/Filters/filters.module.css';
 
 type Props = {
   minPopularity: number;

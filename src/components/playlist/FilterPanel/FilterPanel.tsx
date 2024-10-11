@@ -1,7 +1,7 @@
 import React from 'react';
 
-import CreateNewPlaylist from '@/src/components/playlist/CreateNewPlaylist';
-import Filter from '@/src/components/playlist/Filters';
+import CreateNewPlaylist from '@/src/components/playlist/CreateNewPlaylist/CreateNewPlaylist';
+import Filter from '@/src/components/playlist/FilterPanel/Filters/Filters';
 import type { Playlist, Track } from '@/src/types';
 
 type Props = {

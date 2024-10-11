@@ -1,5 +1,5 @@
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
-import styles from '@/src/components/playlist/playlist-metadata.module.css';
+import styles from '@/src/components/playlist/PlaylistMetadata/playlist-metadata.module.css';
 
 type Props = {
   owner: string;
