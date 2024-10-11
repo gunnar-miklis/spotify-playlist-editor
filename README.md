@@ -1,18 +1,18 @@
-# Spotify Playlist Assistant (Prototype)
+# Spotify Playlist Assistant (v1)
 
 Spotify Playlist Assistant is a simple interface that provides methods to interact with the Spotify API. It allows users to fetch playlists and their tracks, apply filters to refine the tracklist, and create new playlists based on the selected criteria.
 
 &nbsp;
 
-<div align='center' >
+<div align='center'>
 
-### [**>> Try it out! <<**](https://spotify-playlist-assistant.vercel.app/)
+### [**>> Try out the prototype <<**](https://spotify-playlist-assistant.vercel.app/)
 
 </div>
 
 &nbsp;
 
-![Screenshot](/public/screenshot.webp)
+![Screenshot of the prototype](/public/screenshot.webp)
 
 &nbsp;
 
@@ -32,7 +32,7 @@ Spotify Playlist Assistant is a simple interface that provides methods to intera
 
 ## 📦 Installation
 
-1. Clone the repository: `git clone https://github.com/gunnar-miklis/spotify-playlist-assistant.git`.
+1. Clone the repository: `git clone https://github.com/gunnar-miklis/spotify-playlist-assistant-v1.git`.
 2. Install dependencies: `yarn` or `npm install`.
 3. Create a Client App on the Spotify Web API website.
     - Follow this doc ([Spotify Web API Documentation](https://developer.spotify.com/documentation/web-api/concepts/apps)) to create your application and generate the app credentials (CLIENT_ID and CLIENT_SECRET).
@@ -59,29 +59,35 @@ src/
 │   ├── (default)
 │   │   └── playlists
 │   │       ├── [id]/page.tsx
-│   │       ├── layout.tsx
-│   │       └── page.tsx
+│   │       ├── page.tsx
+│   │       └── layout.tsx
 │   ├── actions
 │   │   ├── playlists/createPlaylist.ts
 │   │   └── session/getUserId.ts
 │   ├── api/auth/[...nextauth]/route.ts
-│   ├── error.tsx
+│   ├── page.tsx
 │   ├── layout.tsx
 │   ├── loading.tsx
 │   ├── not-found.tsx
-│   └── page.tsx
+│   └── error.tsx
 ├── components
 │   ├── auth/...
 │   ├── common/...
+│   ├── layout/...
 │   ├── playlist/...
 │   └── playlists/...
 ├── styles
-│   ├── app.module.css
-│   └── global.css
+│   ├── main.css
+│   ├── app.css
+│   ├── globals.css
+│   ├── reset.css
+│   ├── utils.css
+│   └── variables.css
 ├── utils
 │   ├── apiService.ts
 │   └── functions.ts
-├── types/...
+├── types
+│   └── index.d.ts
 ├── auth.ts
 └── middleware.ts
 ```
@@ -92,20 +98,15 @@ src/
 - And on the other hand, it's a fun hobby project. I've always wanted better filtering options for playlists in Spotify, but since they don't offer that feature, I decided to build it myself.
 - It's a mix of learning something new and solving a problem I've personally wanted fixed for a while.
 
-## 🧗‍♂️ Challenges and Learning Experiences
-
-1. The biggest challenge for me, as someone who's used to develope with React  (purely client-side) was adapting to Next.js the hybrid full-stack approach. Getting a feel for how server and client connects, especially when mixing SSR with dynamic CSR, took some time to grasp. Having the server involved in state managment required to rethink how states or data fetching are handled on the client-side — such as using API routes or Server Actions.
-2. Another significant challenge was working with the Spotify API. While it's feature-rich and offers a lot of functionality, the responses are large JSON objects, so I had to carefully pick out the relevant properties. Since each endpoint is designed to handle just a single specific task (I assume the API strictly follows the SOLID principles), I often needed to make several API calls to gather all the data required for just a single action in my application.
-3. The file-based system (nested folder structures) initally felt complex. However it offers a lot of flexibility and organization as the project grows.
-4. CSS modules was a new concept for me as well. They provide modularity, which is incredibly helpful when working with individual components, making styling more manageable.
-
 ## 💭 Future Ideas
 
 - Add more filters.
   - this needs extra Api calls, since the cool filters ("dancebility", "loudness", "energetic", etc.) need an api call for EACH track.
+- Sort playlists.
+- Randomize playlists.
 - Pagination: lazy/auto loading.
 - Style the OAuth redirect page.
-- Allow the user to make new created playlist public.
+- Allow the user to make newly created playlist "public" available.
   - Prompt when creating playlist: "Do you want to share this playlist with everyone?"
   - Database will store the information (use Prisma ORM).
   - Playlist page will be splitted into "Private playlist" and "Public playist".
