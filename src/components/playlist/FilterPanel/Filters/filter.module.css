@@ -1,0 +1,58 @@
+.filter {
+}
+
+.filter--active {
+  backdrop-filter: blur(10px) saturate(800%);
+}
+
+.filter__header {
+}
+
+.filter__body {
+}
+
+.filter__title {
+}
+
+/* TESTING: temporary */
+.filter__current-value {
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  background-color: var(--col-bg);
+  color: var(--col-accent-active);
+}
+
+.filter__checkbox {
+  width: var(--space-md);
+  height: var(--space-md);
+  cursor: pointer;
+}
+
+.filter__popularity-range {
+  appearance: none;
+  background: white;
+
+  width: 100px;
+  height: 0.5rem;
+  border-radius: 1rem;
+}
+
+.filter__popularity-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--col-accent-active);
+  cursor: pointer;
+}
+
+.filter__release-date-select {
+  border-radius: var(--border-radius);
+  padding: calc(var(--space-sm) / 2) var(--space-sm);
+  cursor: pointer;
+}
+.filter__release-date-option {
+}
