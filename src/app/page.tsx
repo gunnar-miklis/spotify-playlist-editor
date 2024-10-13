@@ -22,7 +22,7 @@ export default async function RootPage() {
     return (
       <AppWrapper heading={heading}>
         <section id='user' className='section'>
-          <Paper className='flex-col'>
+          <Paper className='flx-cl'>
             <User {...session.user} />
           </Paper>
           <Paper>

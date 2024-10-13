@@ -86,7 +86,7 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <Paper className='flex-col'>
+    <Paper className='flx-cl'>
       <strong className='strong'>Create a new playlist</strong>
 
       <p className='p'>

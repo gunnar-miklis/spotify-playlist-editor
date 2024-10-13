@@ -1,28 +1,31 @@
-.flex-row {
+.flx-rw {
   display: flex;
   flex-direction: row;
 }
-.flex-col {
+.flx-cl {
   display: flex;
   flex-direction: column;
 }
-.flex-between {
+.flx-btw {
   justify-content: space-between;
   align-items: center;
 }
-.flex-wrap {
-  flex-wrap: wrap;
+.flx-w {
+  flx-w: wrap;
 }
-.flex-nowrap {
-  flex-wrap: nowrap;
+.flx-nw {
+  flx-w: nowrap;
+}
+.flx-ctr {
+  align-items: center;
 }
 
-.gap-sm {
+.gp-sm {
   gap: var(--space-sm);
 }
-.gap-md {
+.gp-md {
   gap: var(--space-md);
 }
-.gap-lg {
+.gp-lg {
   gap: var(--space-lg);
 }

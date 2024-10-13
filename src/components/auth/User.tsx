@@ -11,7 +11,7 @@ export default function User({ name, image }: Props) {
 
   return (
     <>
-      <Paper className='flex-row flex-between'>
+      <Paper className='flx-rw flx-btw'>
         <h2 className='h2'>Hello {name} !</h2>
         <Avatar>
           <AvatarImage userName={name} userImage={image} />

@@ -87,7 +87,7 @@ function Layout({ children, playlist, filteredTracks }: LayoutProps) {
         <PlaylistMetadata {...playlist} />
       </section>
 
-      <section className='section flex-row flex-wrap' id='filter-panel'>
+      <section className='section flx-rw flx-w' id='filter-panel'>
         <FilterPanel playlist={playlist} filteredTracks={filteredTracks} />
       </section>
 
