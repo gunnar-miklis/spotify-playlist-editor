@@ -42,6 +42,8 @@
 
 /* SECTION: INTERACTIVE ELEMENTS */
 .link {
+  position: relative;
+
   border-bottom: 2px solid transparent;
 
   color: var(--col-accent);
@@ -50,6 +52,23 @@
 .link:hover,
 .link:focus {
   color: var(--col-accent-active);
+}
+.link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--col-accent);
+  transform-origin: bottom left;
+  transition: transform 0.25s ease-out;
+}
+.link:hover::after,
+.link:focus::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 .button {
   display: inline-flex;
