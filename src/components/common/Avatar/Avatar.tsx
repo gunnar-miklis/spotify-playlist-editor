@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 
-import styles from '@/src/components/common/avatar/avatar.module.css';
+import styles from '@/src/components/common/Avatar/avatar.module.css';
 import { getIntials } from '@/src/utils/functions';
 
 type AvatarProps = { children: ReactNode };
