@@ -1,6 +1,6 @@
 /**
  * Sorts an array of objects based on a field and toggles the sort order between ascending and descending.
- * 
+ *
  * @param field The property name to sort by.
  * @param initalArray The array to sort.
  * @param isAsc Whether to sort in ascending (true) or descending (false) order.
@@ -34,7 +34,7 @@ export function sortObjectsByField<ObjectType>(
 
 /**
  * Converts milliseconds to minutes and seconds.
- * 
+ *
  * @param ms the number of milliseconds.
  * @returns a string in the format of '02:05'.
  */
@@ -46,7 +46,7 @@ export function msToMin(ms: number): string {
 
 /**
  * Capitalizes the first letter of a string.
- * 
+ *
  * @param {string} str The string to capitalize the first letter of.
  * @returns {string} The string with the first letter capitalized.
  */
@@ -56,7 +56,7 @@ export function capitalizeFirstLetter(str: string) {
 
 /**
  * Returns the first two letters of a string, capitalized.
- * 
+ *
  * @param {string} name The string to get initials from.
  * @returns {string} The first two letters of the string, capitalized.
  */
