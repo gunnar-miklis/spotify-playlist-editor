@@ -1,8 +1,8 @@
 :root {
-  --col-text: light-dark(#000000, #f0f0f0);
-  --col-bg: light-dark(#f0f0f0, #000000);
-  --col-accent: light-dark(#0cb661d9, #2de97bd9);
-  --col-accent-active: light-dark(#0cb661, #2de97b);
+  --col-text: light-dark(#000000ee, #ffffffee);
+  --col-bg: light-dark(#ffffffee, #000000ee);
+  --col-accent: light-dark(#0cb661bb, #2de97bbb);
+  --col-accent-active: light-dark(#0cb661ee, #2de97bee);
   --col-card-bg: light-dark(#0f0f0f0f, #f0f0f020);
   --col-selection-text: light-dark(black, white);
   --col-selection-bg: light-dark(#00eb4e2d, #4fdb7e62);
