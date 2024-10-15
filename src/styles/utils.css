@@ -11,10 +11,10 @@
   align-items: center;
 }
 .flx-w {
-  flx-w: wrap;
+  flex-wrap: wrap;
 }
 .flx-nw {
-  flx-w: nowrap;
+  flex-wrap: nowrap;
 }
 .flx-ctr {
   align-items: center;
