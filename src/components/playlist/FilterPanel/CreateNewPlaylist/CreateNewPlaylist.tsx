@@ -7,7 +7,7 @@ import { createPlaylist } from '@/src/app/actions/playlists/createPlaylist';
 import { getUserId } from '@/src/app/actions/session/getUserId';
 import InlineSpinner from '@/src/components/common/InlineSpinner/InlineSpinner';
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
-import styles from '@/src/components/playlist/CreateNewPlaylist/create-new-playlist.module.css';
+import styles from '@/src/components/playlist/FilterPanel/filter-panel.module.css';
 import type {
   AddItemsToPlaylistBody,
   CreatePlaylistBody,
@@ -61,7 +61,7 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
     return (
       <Layout>
         <button className='button button--wait' disabled>
-          Successful <MdOutlineCheckCircle className={styles.icon} />
+          Successful <MdOutlineCheckCircle className='button__success-icon' />
         </button>
       </Layout>
     );
@@ -86,16 +86,21 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <Paper className='flx-cl'>
-      <strong className='strong'>Create a new playlist</strong>
+    <Paper className={`${styles['filter-item']} flx-cl`}>
+      <div className={`${styles['filter-item__header']}`}>
+        <strong className={`strong ${styles['filter-item__title']}`}>
+          Create a new playlist
+        </strong>
+      </div>
 
-      <p className='p'>
-        {/* FIXME: include sorting as well, as of now it doesn't include sorting */}
-        It&apos;ll create a copy of this playlist based on selected filters and
-        current sorting.
-      </p>
-
-      {children}
+      <div className={`${styles['filter-item__body']} flx-cl gp-sm`}>
+        <p className='p'>
+          {/* FIXME: include sorting as well, as of now it doesn't include sorting */}
+          It&apos;ll create a copy of this playlist based on selected filters
+          and current sorting.
+        </p>
+        {children}
+      </div>
     </Paper>
   );
 }

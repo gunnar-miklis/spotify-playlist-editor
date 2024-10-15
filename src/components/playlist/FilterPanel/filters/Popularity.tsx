@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import Filter from '@/src/components/playlist/FilterPanel/Filters/Filter';
-import styles from '@/src/components/playlist/FilterPanel/Filters/filter.module.css';
+import Filter from '@/src/components/playlist/FilterPanel/Filter/Filter';
+import styles from '@/src/components/playlist/FilterPanel/filter-panel.module.css';
 import type { Track } from '@/src/types';
 
 type Props = { filteredTracks: Track[] };
@@ -18,7 +18,7 @@ export default function Popularity({ filteredTracks }: Props) {
     <Filter filterName='popularity' filterValue={popularity}>
       <p className='p'>{minPopularity}</p>
       <input
-        className={styles['filter__popularity-range']}
+        className={styles['filter-item__popularity-range']}
         type='range'
         min={minPopularity}
         max={maxPopularity}

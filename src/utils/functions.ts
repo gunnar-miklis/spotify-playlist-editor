@@ -82,3 +82,38 @@ export function convertToKebabCase(str: string): string {
 
   return formattedStr;
 }
+
+/**
+ * Shuffles an array in place.
+ * This function uses the Fisher-Yates shuffle algorithm, which is an unbiased shuffling algorithm.
+ * @example
+ * const nums = [1, 2, 3, 4, 5]
+ * shuffleArray(nums); // => [4, 5, 1, 3, 2]
+ * @param {ArrayType[]} array - the input array to shuffle (the type will be inferred).
+ * @returns {ArrayType[]} the shuffled array.
+ */
+export function shuffleArray<ArrayType>(array: ArrayType[]) {
+  const shuffledArray = Array.from(array);
+
+  // loop array backwards (from last to first entry)
+  for (let i = shuffledArray.length - 1; i >= 0; i--) {
+    const randomIdx = Math.floor(Math.random() * (i + 1)); // pick random index
+    const currentValue = shuffledArray[i]; // store current value (temporary)
+
+    // swap "current entry" with "random entry"
+    shuffledArray[i] = shuffledArray[randomIdx]; // overwrite current with random
+    shuffledArray[randomIdx] = currentValue; // overwrite random with current (temporary stored)
+  }
+
+  return shuffledArray;
+}
+
+/**
+ * Converts a boolean value to a readable string,
+ * e.g. true -> 'Yes' and false -> 'No'.
+ * @param value The boolean value to convert.
+ * @returns A human-readable string representation of the boolean value.
+ */
+export function booleanToReadable(value: boolean) {
+  return value ? 'Yes' : 'No';
+}

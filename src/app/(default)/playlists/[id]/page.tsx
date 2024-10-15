@@ -12,6 +12,7 @@ import type {
   Track,
 } from '@/src/types';
 import apiService from '@/src/utils/apiService';
+import { shuffleArray } from '@/src/utils/functions';
 
 const heading: DynamicHeadingType = {
   level: 1,
@@ -57,6 +58,9 @@ export default async function SinglePlaylist({
           track[key].includes(searchParams[key]),
         );
         break;
+      case 'randomize':
+        filteredTracks = shuffleArray(filteredTracks);
+        break;
     }
   });
 
@@ -87,7 +91,7 @@ function Layout({ children, playlist, filteredTracks }: LayoutProps) {
         <PlaylistMetadata {...playlist} />
       </section>
 
-      <section className='section flx-rw flx-w' id='filter-panel'>
+      <section className='section' id='filter-panel'>
         <FilterPanel playlist={playlist} filteredTracks={filteredTracks} />
       </section>
 

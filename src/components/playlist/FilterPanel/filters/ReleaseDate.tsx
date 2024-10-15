@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import Filter from '@/src/components/playlist/FilterPanel/Filters/Filter';
-import styles from '@/src/components/playlist/FilterPanel/Filters/filter.module.css';
+import Filter from '@/src/components/playlist/FilterPanel/Filter/Filter';
+import styles from '@/src/components/playlist/FilterPanel/filter-panel.module.css';
 import type { Track } from '@/src/types';
 
 type Props = { filteredTracks: Track[] };
@@ -16,12 +16,12 @@ export default function ReleaseDate({ filteredTracks }: Props) {
   return (
     <Filter filterName='releaseDate' filterValue={releaseDate}>
       <select
-        className={`${styles['filter__release-date-select']} button`}
+        className={`${styles['filter-item__release-date-select']} button`}
         onChange={(e) => setReleaseDate(e.target.value)}
       >
         {releaseYears.map((releaseDate) => (
           <option
-            className={styles['filter__release-date-option']}
+            className={styles['filter-item__release-date-option']}
             key={releaseDate}
             value={releaseDate}
           >

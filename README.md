@@ -103,7 +103,7 @@ src/
 - Add more filters.
   - this needs extra Api calls, since the cool filters ("dancebility", "loudness", "energetic", etc.) need an api call for EACH track.
 - Sort playlists.
-- Randomize playlists.
+- ~~Randomize playlists.~~
 - Pagination: lazy/auto loading.
 - Style the OAuth redirect page.
 - Allow the user to make newly created playlist "public" available.

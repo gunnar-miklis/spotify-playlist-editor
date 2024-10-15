@@ -1,21 +1,25 @@
-.filter {
+.filter-panel {
 }
 
-.filter--active {
+.filter-item {
+  flex: 1 1 210px;
+}
+
+.filter-item--active {
   backdrop-filter: blur(10px) saturate(800%);
 }
 
-.filter__header {
+.filter-item__header {
 }
 
-.filter__body {
+.filter-item__body {
 }
 
-.filter__title {
+.filter-item__title {
 }
 
 /* TESTING: temporary */
-.filter__current-value {
+.filter-item__current-value {
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   font-weight: bold;
@@ -23,13 +27,13 @@
   color: var(--col-accent-active);
 }
 
-.filter__checkbox {
+.filter-item__checkbox {
   width: var(--space-md);
   height: var(--space-md);
   cursor: pointer;
 }
 
-.filter__popularity-range {
+.filter-item__popularity-range {
   appearance: none;
   background: white;
 
@@ -38,7 +42,7 @@
   border-radius: 1rem;
 }
 
-.filter__popularity-range::-webkit-slider-thumb {
+.filter-item__popularity-range::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
 
@@ -49,10 +53,10 @@
   cursor: pointer;
 }
 
-.filter__release-date-select {
+.filter-item__release-date-select {
   border-radius: var(--border-radius);
   padding: calc(var(--space-sm) / 2) var(--space-sm);
   cursor: pointer;
 }
-.filter__release-date-option {
+.filter-item__release-date-option {
 }

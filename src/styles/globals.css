@@ -92,6 +92,11 @@
 .button:focus {
   background-color: var(--col-accent-active);
 }
+.button__success-icon {
+  background-color: transparent;
+  color: var(--text-col);
+  font-size: 1.3rem;
+}
 .button--wait {
   cursor: wait;
 }
