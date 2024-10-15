@@ -21,6 +21,7 @@ export default async function RootPage() {
   if (session) {
     return (
       <AppWrapper heading={heading}>
+        <p>*API fetches currently limited to 20 items.</p> {/* TESTING */}
         <section id='user' className='section'>
           <Paper className='flx-cl'>
             <User {...session.user} />
@@ -35,6 +36,7 @@ export default async function RootPage() {
 
   return (
     <AppWrapper heading={heading}>
+      <p>*API fetches currently limited to 20 items.</p> {/* TESTING */}
       <section id='user' className='section'>
         <Paper>
           <h2 className='h2'>Login</h2>

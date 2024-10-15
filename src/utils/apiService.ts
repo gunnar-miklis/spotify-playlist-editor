@@ -50,7 +50,10 @@ class ApiService {
    */
   async getAllPlaylists() {
     try {
-      const apiResponse = await this._api('GET', '/me/playlists');
+      const apiResponse = await this._api(
+        'GET',
+        `/me/playlists?offset=${this._offset}&limit=${this._limit}`,
+      );
       if (!apiResponse.ok) {
         throw new Error(
           `Failed to fetch playlists: ${apiResponse.status} ${apiResponse.statusText}`,
