@@ -6,6 +6,7 @@ import Paper from '@/src/components/layout/wrappers/Paper/Paper';
 
 type Props = { children: ReactNode };
 
+// SECTION: table
 export default function Table({ children }: Props) {
   return (
     <Paper className={styles['table']}>
@@ -14,15 +15,16 @@ export default function Table({ children }: Props) {
   );
 }
 
+// SECTION: table body
 export function TableBody({ children }: Props) {
   return <tbody className={styles['table__body']}>{children}</tbody>;
 }
 
+// SECTION: table header
 /**
  * A reusable table header component (with generic type).
  * - It returns a table header row with dynamically generated header columns.
  * - By default, header columns include a sort button to sort the table by it's property name.
- *
  * @param tableEntry A single (object) entry of the table data array (used to reference the properties).
  * @param handleSortTable The sorting function, which sorts the table by the selected header column.
  * @param propertiesToDisplay A manually selected list of properties to determine which properties should be displayed in the header.
