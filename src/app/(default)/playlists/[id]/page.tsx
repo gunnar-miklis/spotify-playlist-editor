@@ -9,10 +9,12 @@ import type {
   DynamicHeadingType,
   NavLinkType,
   Playlist,
+  SortTracksBy,
   Track,
+  TrackProperties,
 } from '@/src/types';
 import apiService from '@/src/utils/apiService';
-import { shuffleArray } from '@/src/utils/functions';
+import { shuffleArray, sortObjectsByField } from '@/src/utils/functions';
 
 const heading: DynamicHeadingType = {
   level: 1,
@@ -31,10 +33,7 @@ export async function generateMetadata({
 
 type Props = {
   params: { id: string };
-  searchParams: {
-    popularity: string;
-    releaseDate: string;
-  };
+  searchParams: TrackProperties;
 };
 
 export default async function SinglePlaylist({
@@ -45,24 +44,7 @@ export default async function SinglePlaylist({
   heading.text = playlist.name;
 
   const playlistTracks = await apiService.getPlaylistTracks(id);
-  let filteredTracks: Track[] = structuredClone(playlistTracks);
-  Object.keys(searchParams).forEach((key) => {
-    switch (key) {
-      case 'popularity':
-        filteredTracks = filteredTracks.filter(
-          (track) => track[key] <= Number(searchParams[key]),
-        );
-        break;
-      case 'releaseDate':
-        filteredTracks = filteredTracks.filter((track) =>
-          track[key].includes(searchParams[key]),
-        );
-        break;
-      case 'randomize':
-        filteredTracks = shuffleArray(filteredTracks);
-        break;
-    }
-  });
+  const filteredTracks = handleFiltering(playlistTracks, searchParams);
 
   if (filteredTracks.length) {
     return (
@@ -100,4 +82,64 @@ function Layout({ children, playlist, filteredTracks }: LayoutProps) {
       </section>
     </AppWrapper>
   );
+}
+
+/**
+ * Filters, sorts or randomize the playlist tracks based on the URL search parameters.
+ * @param {Track[]} playlistTracks - the inital array of tracks fetched from the Spotify API (playlistTracks).
+ * @param {TrackProperties} searchParams - an object containing key-value pairs. Keys are expect to match the properties of a track object.
+ * @returns {Track[]} a new array of tracks (filteredTracks) that have been processed (filter, sort: asc/desc, shuffle).
+ */
+function handleFiltering(
+  playlistTracks: Track[],
+  searchParams: TrackProperties,
+) {
+  // re-assigning to filteredTracks allow to narrow down the results.
+  let filteredTracks = structuredClone(playlistTracks);
+
+  // loop through all search params. each iteration will narrow down the results.
+  Object.entries(searchParams).forEach(([searchKey, searchValue]) => {
+    switch (searchKey) {
+      case 'popularity':
+        filteredTracks = filteredTracks.filter(
+          (track) => track[searchKey] <= Number(searchValue),
+        );
+        break;
+
+      case 'releaseDate':
+        filteredTracks = filteredTracks.filter((track) =>
+          track[searchKey].includes(searchValue),
+        );
+        break;
+
+      case 'randomize':
+        filteredTracks = shuffleArray(filteredTracks);
+        break;
+
+      case 'sorting':
+        // get the correct values from searchParams
+        const [trackProperty, sortingOrder] = searchValue.split(
+          '+',
+        ) as SortTracksBy;
+        // perform sorting for either ascending or descending
+        if (sortingOrder === 'asc') {
+          [filteredTracks] = sortObjectsByField(
+            trackProperty,
+            filteredTracks,
+            true,
+          );
+          break;
+        }
+        if (sortingOrder === 'desc') {
+          [filteredTracks] = sortObjectsByField(
+            trackProperty,
+            filteredTracks,
+            false,
+          );
+          break;
+        }
+    }
+  });
+
+  return filteredTracks;
 }

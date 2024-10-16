@@ -5,15 +5,18 @@ import { type ReactNode, useEffect, useState } from 'react';
 
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
 import styles from '@/src/components/playlist/FilterPanel/filter-panel.module.css';
-import type { TrackProperties } from '@/src/types';
+import type { SortTracksBy, TrackProperties } from '@/src/types';
 import {
   booleanToReadable,
   capitalizeFirstLetter,
 } from '@/src/utils/functions';
 
+type FilterName = TrackProperties | 'randomize' | 'sorting';
+type FilterValue = string | number | 'randomize' | SortTracksBy | null;
+
 type Props = {
-  filterName: TrackProperties | 'randomize' | 'sort';
-  filterValue: string | number | 'randomize';
+  filterName: FilterName;
+  filterValue: FilterValue;
   children?: ReactNode;
 };
 
@@ -24,28 +27,23 @@ export default function Filter({ filterName, filterValue, children }: Props) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // SECTION: get search params from url. if the url has a filter, set it's checkbox to true.
+  // SECTION: update state (isChecked) when url changes and has an entry matching the filterName
   useEffect(() => {
-    searchParams.forEach((_searchValue, searchName) => {
-      if (searchName === filterName) setIsChecked(true);
-    });
-
+    if (searchParams.has(filterName)) setIsChecked(true);
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   // SECTION: update search params when a filter is added or removed (checkbox is checked / unchecked).
   useEffect(() => {
+    if (!filterValue) return;
+
     // get current search params
     const newSearchParams = new URLSearchParams(searchParams);
 
     // set or delete search params, when filter is checked
     if (isChecked) {
-      newSearchParams.set(
-        filterName,
-        filterValue === 'randomize'
-          ? Date.now().toString() // generate a unique number, so that each time the random-order is different (otherwise next.js caches the url and reuse the same order)
-          : filterValue.toString(), // convert values (number) to string
-      );
+      newSearchParams.set(filterName, convertFilterValue(filterValue));
     } else {
       newSearchParams.delete(filterName);
     }
@@ -71,11 +69,7 @@ export default function Filter({ filterName, filterValue, children }: Props) {
           {capitalizeFirstLetter(filterName)}
         </strong>
         <p className={`p ${styles['filter-item__current-value']}`}>
-          {
-            filterValue === 'randomize'
-              ? booleanToReadable(isChecked) // display yes/no
-              : filterValue.toString() // display the actual value
-          }
+          {displayFilterValue(filterValue, isChecked)}
         </p>
       </div>
 
@@ -87,9 +81,58 @@ export default function Filter({ filterName, filterValue, children }: Props) {
         onChange={(e) => setIsChecked(e.target.checked)}
       />
 
-      <div className={`${styles['filter-item__body']} flx-rw flx-ctr gp-sm`}>
-        {children}
-      </div>
+      {(!isChecked || !children) && (
+        <div className={`${styles['filter-item__body']} flx-rw flx-ctr gp-sm`}>
+          {children}
+        </div>
+      )}
     </Paper>
   );
+}
+
+/**
+ * Converts the filterValue to a string representation that can be used as a URL search parameter.
+ * Handles the different types of filterValue, such as:
+ * - 'randomize' -> generate a unique number (to avoid caching of the same order).
+ * - array (SortTracksBy) -> convert to a string with the values joined by '+'.
+ * - numbers -> convert to string.
+ * @param value the filterValue to convert.
+ * @returns a string representation of the filterValue.
+ * @throws {Error} if the filterValue type is unexpected.
+ */
+function convertFilterValue(value: FilterValue) {
+  // generate a unique number, so that each time the random-order is different (otherwise next.js caches the url and reuse the same order)
+  if (value === 'randomize') return Date.now().toString();
+
+  // convert SortTracksBy array to string
+  if (Array.isArray(value)) return value.join('+');
+
+  // convert numbers to string
+  if (typeof value === 'number') return value.toString();
+
+  // validate strings
+  if (typeof value === 'string') return value;
+
+  // handle unexpected filterValue type
+  console.error('Unexpected filterValue type.'); // dev
+  throw new Error('Unexpected filterValue type.'); // runtime
+}
+
+/**
+ * Converts the filterValue to a string representation that can be displayed to the user.
+ * - for inactive filters: return a dash, representing "null", "none" or "not selected".
+ * - for the 'randomize' filter: convert the true/false into a readable "yes/no".
+ * @param value the filterValue to convert.
+ * @param isActive if the filter is currently selected/active/isChecked.
+ * @returns a string representation of the filterValue.
+ */
+function displayFilterValue(value: FilterValue, isActive: boolean) {
+  // handle unselected filters
+  if (!value) return '-';
+
+  // display yes/no
+  if (value === 'randomize') return booleanToReadable(isActive);
+
+  // convert (numbers) to string
+  return value.toString();
 }

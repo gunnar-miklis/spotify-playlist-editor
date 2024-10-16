@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import Filter from '@/src/components/playlist/FilterPanel/Filter/Filter';
 import styles from '@/src/components/playlist/FilterPanel/filter-panel.module.css';
@@ -11,8 +12,15 @@ type Props = { filteredTracks: Track[] };
 export default function Popularity({ filteredTracks }: Props) {
   const minPopularity = getMinPopularity(filteredTracks);
   const maxPopularity = getMaxPopularity(filteredTracks);
+  const [popularity, setPopularity] = useState<string>(null!);
 
-  const [popularity, setPopularity] = useState<number>(maxPopularity);
+  // update state (filterValue) when url changes
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    if (searchParams.has('popularity')) {
+      setPopularity(searchParams.get('popularity')!);
+    }
+  }, [searchParams]);
 
   return (
     <Filter filterName='popularity' filterValue={popularity}>
@@ -23,7 +31,7 @@ export default function Popularity({ filteredTracks }: Props) {
         min={minPopularity}
         max={maxPopularity}
         value={popularity}
-        onChange={(e) => setPopularity(parseInt(e.target.value))}
+        onChange={(e) => setPopularity(e.target.value)}
       />
       <p className='p'>{maxPopularity}</p>
     </Filter>

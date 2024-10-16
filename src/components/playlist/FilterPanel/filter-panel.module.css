@@ -53,10 +53,11 @@
   cursor: pointer;
 }
 
-.filter-item__release-date-select {
+.filter-item__select {
   border-radius: var(--border-radius);
   padding: calc(var(--space-sm) / 2) var(--space-sm);
   cursor: pointer;
 }
-.filter-item__release-date-option {
+.filter-item__option {
+  text-align: center;
 }

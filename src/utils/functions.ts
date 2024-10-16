@@ -26,7 +26,13 @@ export function sortObjectsByField<ObjectType>(
     if (typeof a[field] === 'number' && typeof b[field] === 'number') {
       return isAsc ? a[field] - b[field] : b[field] - a[field];
     }
-    throw new Error('Sorting failed: Unexpected type.');
+
+    console.error(
+      'ERROR at sortObjectsByField(): Sorting failed. Unexpected type.',
+    );
+    throw new Error(
+      `Cannot sort by "${field.toString()}". Check for misspelling.`,
+    );
   });
   const isAscToggled = isAsc ? false : true;
   return [sortedArray, isAscToggled];

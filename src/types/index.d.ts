@@ -13,6 +13,8 @@ export type NavLinkType = {
   href?: string;
 };
 
+export type SortingOrder = 'asc' | 'desc';
+
 // SECTION: playlist/track related types used in the application
 export type Playlist = {
   id: string;
@@ -36,6 +38,7 @@ export type Track = {
   apiEndpoint: string;
 };
 export type TrackProperties = Partial<keyof Track>;
+export type SortTracksBy = [TrackProperties, SortingOrder];
 
 // SECTION: Types for the Spotify Api
 /**
