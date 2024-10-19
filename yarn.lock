@@ -2548,6 +2548,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"playlist-editor-for-spotify@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "playlist-editor-for-spotify@workspace:."
+  dependencies:
+    "@types/node": "npm:^22.5.0"
+    "@types/react": "npm:^18"
+    "@types/react-dom": "npm:^18"
+    eslint: "npm:^8"
+    eslint-config-next: "npm:14.2.6"
+    eslint-config-prettier: "npm:^9.1.0"
+    eslint-plugin-jsx-a11y: "npm:^6.9.0"
+    eslint-plugin-react-refresh: "npm:^0.4.12"
+    eslint-plugin-simple-import-sort: "npm:^12.1.1"
+    next: "npm:14.2.6"
+    next-auth: "npm:^5.0.0-beta.20"
+    prettier: "npm:^3.3.3"
+    react: "npm:^18"
+    react-dom: "npm:^18"
+    react-icons: "npm:^5.3.0"
+    typescript: "npm:^5.5.4"
+  languageName: unknown
+  linkType: soft
+
 "possible-typed-array-names@npm:^1.0.0":
   version: 1.0.0
   resolution: "possible-typed-array-names@npm:1.0.0"
@@ -2913,29 +2936,6 @@ __metadata:
   checksum: 10c0/7bda1fc4c197e3c6ff17de1b8b2c20e60af81b63a52cb32ec5a5d67a20a7d42651e2cb34ebe93833c5a2a084377e17455854fee3e21e7925c64a51b6a52b0faf
   languageName: node
   linkType: hard
-
-"spotify-playlist-assistant@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "spotify-playlist-assistant@workspace:."
-  dependencies:
-    "@types/node": "npm:^22.5.0"
-    "@types/react": "npm:^18"
-    "@types/react-dom": "npm:^18"
-    eslint: "npm:^8"
-    eslint-config-next: "npm:14.2.6"
-    eslint-config-prettier: "npm:^9.1.0"
-    eslint-plugin-jsx-a11y: "npm:^6.9.0"
-    eslint-plugin-react-refresh: "npm:^0.4.12"
-    eslint-plugin-simple-import-sort: "npm:^12.1.1"
-    next: "npm:14.2.6"
-    next-auth: "npm:^5.0.0-beta.20"
-    prettier: "npm:^3.3.3"
-    react: "npm:^18"
-    react-dom: "npm:^18"
-    react-icons: "npm:^5.3.0"
-    typescript: "npm:^5.5.4"
-  languageName: unknown
-  linkType: soft
 
 "stop-iteration-iterator@npm:^1.0.0":
   version: 1.0.0
