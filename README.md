@@ -1,4 +1,6 @@
-# Playlist Editor (for Spotify)
+# Playlist Editor (for Spotify)*
+
+**\*under development 🏗️**
 
 Playlist Editor (for Spotify) is a simple tool to edit and manage playlists, utilizing the Spotify API. Users can filter, sort, randomize track order and create new playlists. The interface offers a light and a dark theme, and offers responsiveness across devices.
 
@@ -6,13 +8,13 @@ Playlist Editor (for Spotify) is a simple tool to edit and manage playlists, uti
 
 <div align='center'>
 
-### [**>> Try out the prototype <<**](https://spotify-playlist-assistant.vercel.app/)
+### [**>> Try it out <<**](https://playlist-editor-for-spotify.vercel.app)
 
 </div>
 
 &nbsp;
 
-![Screenshot of the prototype](https://res.cloudinary.com/dyrcsywk9/image/upload/v1728660476/spotify-playlist-assistant-v0-laptop.webp)
+![Screenshot of the prototype](https://res.cloudinary.com/dyrcsywk9/image/upload/v1729355211/playlist-editor-for-spotify-laptop.webp)
 
 &nbsp;
 
