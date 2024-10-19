@@ -8,7 +8,7 @@ import AppWrapper from '@/src/components/layout/wrappers/AppWrapper/AppWrapper';
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
 import type { DynamicHeadingType } from '@/src/types';
 
-const title = 'Spotify Playlist Assistant';
+const title = 'Playlist Editor (for Spotify)';
 const heading: DynamicHeadingType = {
   level: 1,
   text: title,

@@ -1,6 +1,6 @@
-# Spotify Playlist Assistant (v1)
+# Playlist Editor (for Spotify)
 
-Spotify Playlist Assistant is a simple interface that provides methods to interact with the Spotify API. It allows users to fetch playlists and their tracks, apply filters to refine the tracklist, and create new playlists based on the selected criteria.
+Playlist Editor (for Spotify) is a simple tool to edit and manage playlists, utilizing the Spotify API. Users can filter, sort, randomize track order and create new playlists. The interface offers a light and a dark theme, and offers responsiveness across devices.
 
 &nbsp;
 
@@ -18,10 +18,12 @@ Spotify Playlist Assistant is a simple interface that provides methods to intera
 
 ## 🚀 Features
 
-1. **Fetch** playlists and tracks from the Spotify API.
+1. **Fetch** user specific playlists from the Spotify API.
 2. **Filter** playlists based on selected criteria.
-3. **Create** new playlists and send them back to the Spotify API.
-4. Light/Dark mode.
+3. **Sort** playlists based on selected criteria.
+4. **Randomize** the playlists track order.
+5. **Create** new playlists for the users account, after applying refinements.
+6. **Theming** Light/Dark mode.
 
 ## 🛠️ Technologies and Frameworks
 
@@ -94,22 +96,36 @@ src/
 
 ## ✨ Motivation
 
-- This project is on the one hand an educational learning project to help me expand my development skills (SSR and CSR with Next.js and TypeScript).
-- And on the other hand, it's a fun hobby project. I've always wanted better filtering options for playlists in Spotify, but since they don't offer that feature, I decided to build it myself.
+- This project is on the one hand an educational learning project to help me expand my development skills (Next.js, TypeScript, SSR/CSR, Authentication, Handle complex API data, Caching, Pagination, Modularity, SOLID principles).
+- And on the other hand, it's a fun hobby project. I've always wanted better filtering/editing options for playlists in Spotify, but since they don't offer that feature, I decided to build it myself.
 - It's a mix of learning something new and solving a problem I've personally wanted fixed for a while.
 
 ## 💭 Future Ideas
 
 - ~~Sort playlists.~~
 - ~~Randomize playlists.~~
-- Add more filters.
-  - this needs extra Api calls, since the cool filters ("dancebility", "loudness", "energetic", etc.) need an api call for EACH track.
+- Batch editing:
+  - merge playlists.
+  - delete playlists.
+  - select and remove tracks from playlist.
+- Paste playlist link to access public playlists that are not stored in the users profile.
+- Basic analytics for playlists:
+  - ~~total tracks~~.
+  - total duration.
+  - frequent genres.
+  - frequent artists.
+- Add more filters (might require several additional api fetches):
+  - genre => fetch each artist.
+  - tempo, mood ("dancebility", "loudness", "energetic", etc.) => fetch each track.
+- Caching: genres, track details, etc.
 - Pagination: lazy/auto loading.
 - Style the OAuth redirect page.
-- Allow the user to make newly created playlist "public" available.
-  - Prompt when creating playlist: "Do you want to share this playlist with everyone?"
-  - Database will store the information (use Prisma ORM).
-  - Playlist page will be splitted into "Private playlist" and "Public playist".
+- Sharing Playlists:
+  - Shareable link.
+  - Allow users to make newly created playlists public available for everyone.
+    - Prompt when creating playlist: "Do you want to share this playlist?"
+    - Playlist will be saved in separate database (use Prisma ORM).
+    - Idea: "Playlist page" might be splitted into "Private playlist" and "Public playist".
 
 ## 🤝 Contributing
 
