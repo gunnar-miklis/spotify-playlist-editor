@@ -51,20 +51,24 @@ export default function Sorting({ track }: Props) {
         >
           Sort Tracks by
         </option>
+
+        {/* Loop over one track object */}
         {Object.keys(track as object).map(
+          // show only selected properties as option in the dropdown
           (objectKey) =>
             propertiesToSortBy.includes(objectKey as keyof Track) && (
+              // add ascending and descending options
               <>
                 <option
-                  className={styles['filter-item__option']}
                   key={[objectKey, 'asc'].join('+')}
+                  className={styles['filter-item__option']}
                   value={[objectKey, 'asc'].join('+')}
                 >
                   {capitalizeFirstLetter(objectKey)} (ascending)
                 </option>
                 <option
-                  className={styles['filter-item__option']}
                   key={[objectKey, 'desc'].join('+')}
+                  className={styles['filter-item__option']}
                   value={[objectKey, 'desc'].join('+')}
                 >
                   {capitalizeFirstLetter(objectKey)} (descending)
