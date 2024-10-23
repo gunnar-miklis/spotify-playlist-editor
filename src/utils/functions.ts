@@ -39,15 +39,36 @@ export function sortObjectsByField<ObjectType>(
 }
 
 /**
- * Converts milliseconds to minutes and seconds.
+ * Converts milliseconds to a time string (in either 'mm:ss' or 'hh:mm:ss' format).
+ * - If the total duration is less than an hour, it returns the time in 'mm:ss' format.
+ * - If the total duration is an hour or more, it returns the time in 'hh:mm:ss' format.
  *
- * @param ms the number of milliseconds.
- * @returns a string in the format of '02:05'.
+ * @example
+ * msToMin(278573); // => 04:39
+ * msToMin(5091211); // => 01:24:51
+ *
+ * @param ms The number of milliseconds to convert.
+ * @returns A string representing the time in 'mm:ss' or 'hh:mm:ss' format.
  */
 export function msToMin(ms: number): string {
-  const minutes: number = Math.floor(ms / 60 / 1000);
   const seconds: string = ((ms % 60000) / 1000).toFixed(0);
-  return `${minutes.toString().padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+  const minutes: number = Math.floor(ms / 60 / 1000);
+
+  // convert to hh:mm:ss
+  if (minutes >= 60) {
+    const hours = Math.floor(minutes / 60);
+    const minutesRemainder = minutes % 60;
+    return (
+      hours.toString().padStart(2, '0') +
+      ':' +
+      minutesRemainder.toString().padStart(2, '0') +
+      ':' +
+      seconds.padStart(2, '0')
+    );
+  }
+
+  // convert to mm:ss
+  return minutes.toString().padStart(2, '0') + ':' + seconds.padStart(2, '0');
 }
 
 /**
