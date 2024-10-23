@@ -32,9 +32,10 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
       const userId = await getUserId();
 
       const metadata: CreatePlaylistBody = {
-        name: playlist.name + ' (filtered)',
-        public: playlist.visibility ?? false,
-        description: 'Playlist filtered by "Spotify Filter Assistant"',
+        name: `${playlist.name} (modified at ${new Date().toLocaleString()})`,
+        public: playlist.visibility, // FIXME: the public/private attritubte is not being passed correctly
+        description:
+          'Playlist modified by "Playlist Editor (for Spotify)". Visit https://playlist-editor-for-spotify.vercel.app to edit your playlist.',
       };
 
       const items: AddItemsToPlaylistBody = {
@@ -57,6 +58,17 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
     }
   };
 
+  // SECTION: Render
+  if (isLoading) {
+    return (
+      <Layout>
+        <button className='button button--wait' disabled>
+          <InlineSpinner />
+        </button>
+      </Layout>
+    );
+  }
+
   if (isCreatedSuccessful) {
     return (
       <Layout>
@@ -69,17 +81,14 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
 
   return (
     <Layout>
-      <button
-        className='button'
-        onClick={handleCreatePlaylist}
-        disabled={isLoading}
-      >
-        {isLoading ? <InlineSpinner /> : 'Create Playlist'}
+      <button className='button' onClick={handleCreatePlaylist}>
+        Create Playlist
       </button>
     </Layout>
   );
 }
 
+// SECTION: Layout
 type LayoutProps = {
   children: ReactNode;
 };
@@ -97,7 +106,7 @@ function Layout({ children }: LayoutProps) {
         <p className='p'>
           {/* FIXME: include sorting as well, as of now it doesn't include sorting */}
           It&apos;ll create a copy of this playlist based on selected filters
-          and current sorting.
+          and sorting.
         </p>
         {children}
       </div>
