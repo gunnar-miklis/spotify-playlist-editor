@@ -16,14 +16,33 @@ export type NavLinkType = {
 export type SortingOrder = 'asc' | 'desc';
 
 // SECTION: playlist/track related types used in the application
+/**
+ * Fetch values from API:
+ * - id
+ * - name
+ * - owner
+ * - visibility
+ * - totalTracks
+ *
+ * Calculate manually from all tracks:
+ * - totalDuration
+ * - topArtists
+ *
+ * Calculate manually from all artists:
+ * - genres
+ */
 export type Playlist = {
   id: string;
   name: string;
   owner: string;
   visibility: boolean;
   totalTracks: number;
+  totalDuration?: number;
+  genres?: string[];
+  topArtists?: TopArtist[];
 };
 export type PlaylistProperties = Partial<keyof Playlist>;
+export type TopArtist = { artistName: string; songCount: number };
 
 export type Track = {
   id: string;

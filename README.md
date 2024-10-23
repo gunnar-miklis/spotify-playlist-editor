@@ -113,7 +113,7 @@ src/
 - Paste playlist link to access public playlists that are not stored in the users profile.
 - Basic analytics for playlists:
   - ~~total tracks~~.
-  - total duration.
+  - ~~total duration.~~
   - frequent genres.
   - frequent artists.
 - Add more filters (might require several additional api fetches):

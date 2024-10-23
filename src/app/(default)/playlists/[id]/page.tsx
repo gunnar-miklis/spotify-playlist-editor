@@ -16,14 +16,17 @@ import type {
 import apiService from '@/src/utils/apiService';
 import { shuffleArray, sortObjectsByField } from '@/src/utils/functions';
 
+// SECTION: constants
 const heading: DynamicHeadingType = {
   level: 1,
   text: null,
 };
+
 const navLink: NavLinkType = {
   text: 'Go back',
   href: '/playlists',
 };
+
 export async function generateMetadata({
   params: { id },
 }: Props): Promise<Metadata> {
@@ -31,6 +34,7 @@ export async function generateMetadata({
   return { title: name };
 }
 
+// SECTION: component
 type Props = {
   params: { id: string };
   searchParams: TrackProperties;
@@ -40,12 +44,22 @@ export default async function SinglePlaylist({
   params: { id },
   searchParams,
 }: Props) {
+  // get playlist metadata
   const playlist = await apiService.getOnePlaylist(id);
   heading.text = playlist.name;
 
+  // get playlist tracks
   const playlistTracks = await apiService.getPlaylistTracks(id);
   const filteredTracks = handleFiltering(playlistTracks, searchParams);
 
+  // set total tracks based on the actual number of fetched tracks
+  playlist.totalTracks = playlistTracks.length;
+
+  // calculate total duration and add to playlist metadata
+  const totalDuration = getTotalDuration(playlistTracks);
+  playlist.totalDuration = totalDuration;
+
+  // show tracks
   if (filteredTracks.length) {
     return (
       <Layout playlist={playlist} filteredTracks={filteredTracks}>
@@ -61,11 +75,13 @@ export default async function SinglePlaylist({
   );
 }
 
+// SECTION: Layout
 type LayoutProps = {
   children: ReactNode;
   playlist: Playlist;
   filteredTracks: Track[];
 };
+
 function Layout({ children, playlist, filteredTracks }: LayoutProps) {
   return (
     <AppWrapper heading={heading} navLink={navLink}>
@@ -84,16 +100,17 @@ function Layout({ children, playlist, filteredTracks }: LayoutProps) {
   );
 }
 
+// SECTION: handle filtering
 /**
  * Filters, sorts or randomize the playlist tracks based on the URL search parameters.
- * @param {Track[]} playlistTracks - the inital array of tracks fetched from the Spotify API (playlistTracks).
- * @param {TrackProperties} searchParams - an object containing key-value pairs. Keys are expect to match the properties of a track object.
- * @returns {Track[]} a new array of tracks (filteredTracks) that have been processed (filter, sort: asc/desc, shuffle).
+ * @param playlistTracks - the inital array of tracks fetched from the Spotify API (playlistTracks).
+ * @param searchParams - an object containing key-value pairs. Keys are expect to match the properties of a track object.
+ * @returns a new array of tracks (filteredTracks) that have been processed (filter, sort: asc/desc, shuffle).
  */
 function handleFiltering(
   playlistTracks: Track[],
   searchParams: TrackProperties,
-) {
+): Track[] {
   // re-assigning to filteredTracks allow to narrow down the results.
   let filteredTracks = structuredClone(playlistTracks);
 
@@ -121,6 +138,7 @@ function handleFiltering(
         const [trackProperty, sortingOrder] = searchValue.split(
           '+',
         ) as SortTracksBy;
+
         // perform sorting for either ascending or descending
         if (sortingOrder === 'asc') {
           [filteredTracks] = sortObjectsByField(
@@ -130,6 +148,7 @@ function handleFiltering(
           );
           break;
         }
+
         if (sortingOrder === 'desc') {
           [filteredTracks] = sortObjectsByField(
             trackProperty,
@@ -142,4 +161,14 @@ function handleFiltering(
   });
 
   return filteredTracks;
+}
+
+/**
+ * Calculates the total duration of all tracks.
+ * @param tracks the array of tracks to calculate the total duration from.
+ * @returns the total duration in milliseconds.
+ */
+function getTotalDuration(tracks: Track[]): number {
+  const totalMs = tracks.reduce((sum, { duration }) => sum + duration, 0);
+  return totalMs;
 }
