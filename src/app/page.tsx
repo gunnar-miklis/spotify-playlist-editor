@@ -8,7 +8,7 @@ import AppWrapper from '@/src/components/layout/wrappers/AppWrapper/AppWrapper';
 import Paper from '@/src/components/layout/wrappers/Paper/Paper';
 import type { DynamicHeadingType } from '@/src/types';
 
-const title = 'Playlist Editor (for Spotify)*';
+const title = 'Playlist Editor (for Spotify)';
 const heading: DynamicHeadingType = {
   level: 1,
   text: title,
@@ -21,20 +21,12 @@ export default async function RootPage() {
   if (session) {
     return (
       <AppWrapper heading={heading}>
-        {/* TESTING */}
-        <p className='p'>
-          *Under development.
-          <br />
-          All API fetches are currently limited to 20 items per fetch.
-        </p>
-
+        <DevInfo />
         <section id='user' className='section'>
           <Paper className='flx-cl'>
             <User {...session.user} />
           </Paper>
-          <Paper>
-            <SignOut />
-          </Paper>
+          <SignOut />
         </section>
       </AppWrapper>
     );
@@ -42,21 +34,24 @@ export default async function RootPage() {
 
   return (
     <AppWrapper heading={heading}>
-      {/* TESTING */}
-      <p className='p'>
-        *Under development.
-        <br />
-        All API fetches are currently limited to 20 items per fetch.
-      </p>
-      
+      <DevInfo />
       <section id='user' className='section'>
         <Paper>
           <h2 className='h2'>Login</h2>
         </Paper>
-        <Paper>
-          <SignIn />
-        </Paper>
+        <SignIn />
       </section>
     </AppWrapper>
+  );
+}
+
+// TESTING
+function DevInfo() {
+  return (
+    <p className='p' style={{ color: 'red' }}>
+      Under development 📱🏗️
+      <br />
+      All API fetches are currently limited to 20 items per fetch.
+    </p>
   );
 }
