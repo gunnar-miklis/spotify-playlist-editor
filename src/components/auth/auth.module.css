@@ -1,0 +1,12 @@
+.auth {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-md);
+}
+.auth__form {
+}
+.auth__button {
+}
+.auth__disclaimer {
+  max-width: 500px;
+}
