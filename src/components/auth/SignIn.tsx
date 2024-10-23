@@ -8,6 +8,8 @@ import styles from '@/src/components/auth/auth.module.css'; // NOTE: "styles" af
 export default function SignIn() {
   return (
     <Paper className={styles['auth']}>
+      <Disclaimer className={styles['auth__disclaimer']} />
+
       <form
         className={`form ${styles['auth__form']}`}
         action={async () => {
@@ -15,12 +17,13 @@ export default function SignIn() {
           await signIn('spotify');
         }}
       >
-        <button className={`button ${styles['auth__button']}`} type='submit'>
+        <button
+          className={`button button--full-width ${styles['auth__button']}`}
+          type='submit'
+        >
           Sign in with Spotify
         </button>
       </form>
-
-      <Disclaimer className={styles['auth__disclaimer']} />
     </Paper>
   );
 }

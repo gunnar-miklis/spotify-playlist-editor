@@ -16,8 +16,9 @@ export default function Disclaimer({ className }: Props) {
         <em>&quot;modifying your playlists&quot;</em>, is used while you&apos;re
         logged in (you can remove this access at any time in your spotify
         account settings). A secure access token containing this data is
-        temporarily saved in your browser. Once you log out, this token and any
-        associated data are deleted. No personal details are stored.
+        temporarily saved in your browser on your device. Once you log out, this
+        token and any associated data are deleted. No personal details are
+        stored.
       </small>
     </div>
   );
