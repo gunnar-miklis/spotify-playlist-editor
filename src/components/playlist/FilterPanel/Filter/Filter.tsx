@@ -30,7 +30,7 @@ export default function Filter({ filterName, filterValue, children }: Props) {
   // SECTION: update state (isChecked) when url changes and has an entry matching the filterName
   useEffect(() => {
     if (searchParams.has(filterName)) setIsChecked(true);
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
