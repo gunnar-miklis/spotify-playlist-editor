@@ -4,8 +4,10 @@ type Props = HTMLAttributes<HTMLDivElement>;
 
 export default function Disclaimer({ className }: Props) {
   return (
-    <div className={`flx-cl gp-sm ${className}`}>
-      <strong className='strong'>Privacy & OAuth Information</strong>
+    <details className={`flx-cl gp-md ${className}`}>
+      <summary style={{ cursor: 'pointer', paddingBottom: 'var(--space-sm)' }}>
+        <strong className='strong'>Privacy & OAuth Information</strong>
+      </summary>
       <small className='small'>
         OAuth is used to securely authenticate your session. This
         industry-standard protocol allows you to log in safely without sharing
@@ -20,6 +22,6 @@ export default function Disclaimer({ className }: Props) {
         token and any associated data are deleted. No personal details are
         stored.
       </small>
-    </div>
+    </details>
   );
 }
