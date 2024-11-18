@@ -51,7 +51,7 @@ function DevInfo() {
     <p className='p' style={{ color: 'red' }}>
       Under development 📱🏗️
       <br />
-      All API fetches are currently limited to 20 items per fetch.
+      Current fetch limits: Playlists = 50. Tracks = 100.
     </p>
   );
 }
