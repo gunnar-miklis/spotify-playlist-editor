@@ -29,7 +29,7 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
   const pathname = usePathname();
 
   useEffect(() => {
-    const url = `https://spotify-playlist-assistant.vercel.app${pathname}`;
+    const url = `https://playlist-editor-for-spotify.vercel.app${pathname}`;
     setCurrentUrl(url);
   }, [pathname]);
 
