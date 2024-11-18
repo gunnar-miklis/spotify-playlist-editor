@@ -1,6 +1,7 @@
 'use client';
 
-import { type ReactNode, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { type ReactNode, useEffect, useState } from 'react';
 import { MdOutlineCheckCircle } from 'react-icons/md';
 
 import { createPlaylist } from '@/src/app/actions/playlists/createPlaylist';
@@ -23,6 +24,14 @@ type Props = {
 export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [isCreatedSuccessful, setIsCreatedSucessful] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const url = `https://spotify-playlist-assistant.vercel.app${pathname}`;
+    setCurrentUrl(url);
+  }, [pathname]);
 
   const handleCreatePlaylist = async () => {
     try {
@@ -32,10 +41,9 @@ export default function CreateNewPlaylist({ playlist, filteredTracks }: Props) {
       const userId = await getUserId();
 
       const metadata: CreatePlaylistBody = {
-        name: `${playlist.name} (modified at ${new Date().toLocaleString()})`,
+        name: `${playlist.name} (${new Date().toLocaleString('en-GB')})`,
+        description: `Playlist modified by "Playlist Editor (for Spotify)". To adjust your edits, visit: ${currentUrl}`,
         public: playlist.visibility, // FIXME: the public/private attritubte is not being passed correctly
-        description:
-          'Playlist modified by "Playlist Editor (for Spotify)". Visit https://playlist-editor-for-spotify.vercel.app to edit your playlist.',
       };
 
       const items: AddItemsToPlaylistBody = {
