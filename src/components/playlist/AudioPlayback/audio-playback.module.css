@@ -3,6 +3,8 @@
   color: var(--text-col);
   opacity: 0.8;
   font-size: 1.3rem;
+  
+  cursor: pointer;
 }
 
 .play-pause-button:hover,
