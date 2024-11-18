@@ -18,8 +18,6 @@ type PostBody = CreatePlaylistBody | AddItemsToPlaylistBody;
  */
 class ApiService {
   private _api;
-  private _offset;
-  private _limit;
 
   constructor() {
     this._api = async (
@@ -40,8 +38,6 @@ class ApiService {
         body: body ? JSON.stringify(body) : null,
       });
     };
-    this._offset = 0;
-    this._limit = 20;
   }
 
   /**
@@ -52,7 +48,7 @@ class ApiService {
     try {
       const apiResponse = await this._api(
         'GET',
-        `/me/playlists?offset=${this._offset}&limit=${this._limit}`,
+        `/me/playlists`,
       );
       if (!apiResponse.ok) {
         throw new Error(
@@ -115,7 +111,7 @@ class ApiService {
     try {
       const apiResponse = await this._api(
         'GET',
-        `/playlists/${id}/tracks?offset=${this._offset}&limit=${this._limit}`,
+        `/playlists/${id}/tracks`,
       );
       if (!apiResponse.ok) {
         throw new Error(
