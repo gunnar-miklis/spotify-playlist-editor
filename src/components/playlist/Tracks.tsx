@@ -64,7 +64,7 @@ export default function Tracks({ tracks }: Props) {
               <td className={styles['table__cell']}>{popularity}</td>
               <td className={styles['table__cell']}>{releaseDate}</td>
               <td className={styles['table__cell']} style={{ display: 'flex' }}>
-                <AudioPlayback source={previewUrl} />
+                {previewUrl ? <AudioPlayback source={previewUrl} /> : '-'}
               </td>
             </tr>
           ),
