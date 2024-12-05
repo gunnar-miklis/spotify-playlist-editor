@@ -46,10 +46,7 @@ class ApiService {
    */
   async getAllPlaylists() {
     try {
-      const apiResponse = await this._api(
-        'GET',
-        `/me/playlists`,
-      );
+      const apiResponse = await this._api('GET', `/me/playlists`);
       if (!apiResponse.ok) {
         throw new Error(
           `Failed to fetch playlists: ${apiResponse.status} ${apiResponse.statusText}`,
@@ -58,13 +55,15 @@ class ApiService {
 
       // Pick only those properties (from data) which are needed in the application
       const data: GetCurrentUsersPlaylists = await apiResponse.json();
-      const playlists: Playlist[] = data.items.map((i) => ({
-        id: i.id,
-        name: i.name,
-        owner: i.owner.display_name,
-        visibility: i.public,
-        totalTracks: i.tracks.total,
-      }));
+      const playlists: Playlist[] = data.items
+        .filter((i) => i) // make sure item is not null
+        .map((i) => ({
+          id: i.id,
+          name: i.name,
+          owner: i.owner.display_name,
+          visibility: i.public,
+          totalTracks: i.tracks.total,
+        }));
 
       return playlists;
     } catch (error) {
@@ -109,10 +108,7 @@ class ApiService {
    */
   async getPlaylistTracks(id: string) {
     try {
-      const apiResponse = await this._api(
-        'GET',
-        `/playlists/${id}/tracks`,
-      );
+      const apiResponse = await this._api('GET', `/playlists/${id}/tracks`);
       if (!apiResponse.ok) {
         throw new Error(
           `Failed to fetch tracks for this playlist: ${apiResponse.status} ${apiResponse.statusText}`,
@@ -121,18 +117,20 @@ class ApiService {
 
       // Pick only those properties (from data) which are needed in the application
       const data: GetPlaylistItems = await apiResponse.json();
-      const playlistTracks: Track[] = data.items.map(({ track }) => ({
-        id: track.id,
-        uri: track.uri,
-        name: track.name,
-        artists: track.artists.map(({ name }) => name).join(', '),
-        duration: track.duration_ms,
-        popularity: track.popularity,
-        releaseDate: track.album.release_date,
-        previewUrl: track.preview_url,
-        openSpotify: track.external_urls.spotify,
-        apiEndpoint: track.href,
-      }));
+      const playlistTracks: Track[] = data.items
+        .filter((i) => i) // make sure item is not null
+        .map(({ track }) => ({
+          id: track.id,
+          uri: track.uri,
+          name: track.name,
+          artists: track.artists.map(({ name }) => name).join(', '),
+          duration: track.duration_ms,
+          popularity: track.popularity,
+          releaseDate: track.album.release_date,
+          previewUrl: track.preview_url,
+          openSpotify: track.external_urls.spotify,
+          apiEndpoint: track.href,
+        }));
 
       return playlistTracks;
     } catch (error) {
