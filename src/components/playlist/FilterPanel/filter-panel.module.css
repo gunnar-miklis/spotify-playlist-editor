@@ -6,7 +6,9 @@
 }
 
 .filter-item--active {
-  backdrop-filter: blur(10px) saturate(800%);
+  backdrop-filter: blur(100px) saturate(1000%);
+  border-color: var(--col-accent-active);
+  border-width: 2px;
 }
 
 .filter-item__header {
